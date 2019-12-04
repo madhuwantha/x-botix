@@ -23,8 +23,8 @@ void qtrRead()
 
   for (int i = 0; i < SensorCount ; i++ )
   {
-    if (sensorValues[i] < 600) dval[i] = 1;
-    else dval[i] = 0;
+    if (sensorValues[i] < 600) dval[i] = 0;
+    else dval[i] = 1;
   }
 }
 

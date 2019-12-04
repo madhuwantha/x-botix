@@ -25,7 +25,7 @@ void encoderMove(int count)
 
 void leaveSquare()
 {
-  //Leaving starting zone --------------------------------
+  //Leaving starting   zone --------------------------------
   setEncoderPID('E');
   forward();
   qtrRead();

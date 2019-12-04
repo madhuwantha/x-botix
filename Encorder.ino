@@ -5,6 +5,7 @@
 
 void setEncoderPID(char manner)
 {
+  forward();
   leftCount = 0;
   rightCount = 0;
 
@@ -71,5 +72,5 @@ void encoderPID()
   int rightMotorSpeed = constrain((baseSpeed + controlSpeed), minSpeed, maxSpeed);
   int leftMotorSpeed = constrain((baseSpeed - controlSpeed), minSpeed, maxSpeed);
 
-//  motorSpeed(leftMotorSpeed, rightMotorSpeed);
+  motorSpeed(leftMotorSpeed, rightMotorSpeed);
 }

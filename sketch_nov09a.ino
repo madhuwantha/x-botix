@@ -42,17 +42,21 @@ void setup() {
   attachInterrupt(0, leftISR, CHANGE);
   attachInterrupt(1, rightISR, CHANGE);
 
-   //qtrSave();
-  
-  qtrLoad();
-  setLineFollow('M');
+  //qtrSave();
+
+  //  qtrLoad();
+  //  setLineFollow('M');
+  setEncoderPID( 'S' );
 
 } //end setup
 
 void loop() {
-//checkQTR();
-lineFollow();
-//  delay( 1000000000000 );
+  encoderPID();
+  
+  
+  //checkQTR();
+  //lineFollow();
+  //  delay( 1000000000000 );
 
 
 }
