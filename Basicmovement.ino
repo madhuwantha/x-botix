@@ -9,6 +9,10 @@ void lineFollowMove(int count)
   brake();
 }
 
+void centerAtJunction() {
+  encoderMove( 100 );
+}
+
 void encoderMove(int count)
 {
   leftCount = 0;
@@ -157,8 +161,8 @@ void turnAngle(int angle)   //change - 7    encoder counts for turns
     case -90: //anticlockwise 90 degree,   total count 740
       leftTurn();
 
-      //      setEncoderPID('X');
-      //      while (leftCount < 50 && rightCount < 50) encoderPID();
+      setEncoderPID('X');
+      while (leftCount < 50 && rightCount < 50) encoderPID();
 
       setEncoderPID('F');
       while (leftCount < 100 && rightCount < 100) encoderPID();

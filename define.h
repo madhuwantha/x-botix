@@ -54,3 +54,8 @@ byte colPins[COLS] = {34, 35, 36, 37, 38, 39}; //connect to the column pinouts o
 Keypad customKeypad = Keypad( makeKeymap(hexaKeys), rowPins, colPins, ROWS, COLS);
 
 char customKey;
+
+
+
+// right servo 11
+// left servo 12
