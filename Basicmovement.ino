@@ -21,7 +21,7 @@ void encoderMove(int count)
   if (count > 0) forward();
   else backward();
 
-  setEncoderPID('E');
+  setEncoderPID('F');
 
   while (leftCount <= abs(count) && rightCount <= abs(count)) encoderPID();
   brake();
@@ -177,18 +177,21 @@ void turnAngle(int angle)   //change - 7    encoder counts for turns
 
 
     case 90: //clockwise 90 degree
-      rightTurn();
+      rightTurn(250,250);
 
       //      setEncoderPID('X');
       //      while (leftCount < 50 && rightCount < 50) encoderPID();
 
       setEncoderPID('F');
+      rightTurn();
       while (leftCount < 100 && rightCount < 100) encoderPID();
 
       setEncoderPID('M');
+      rightTurn();
       while (leftCount < 150 && rightCount < 150) encoderPID();
 
-      setEncoderPID('S');
+      setEncoderPID('M');
+      rightTurn();
       while (leftCount < 200 && rightCount < 200) encoderPID();
 
       break;
@@ -210,7 +213,8 @@ void turnAngle(int angle)   //change - 7    encoder counts for turns
       break;
   }
 
-  setEncoderPID('E');
+  setEncoderPID('F');
+  rightTurn();
   while (1)
   {
     qtrRead();

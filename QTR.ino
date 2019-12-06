@@ -34,7 +34,7 @@ void qtrLoad()
   for (int i = 0; i < SensorCount; i++)
   {
     qtr.calibrationOn.minimum[i] = EEPROM.read(i);
-    qtr.calibrationOn.maximum[i] = 5 * (EEPROM.read(i + 10));   //change - 14     EEFROM position should be change ===>> i+20
+    qtr.calibrationOn.maximum[i] = 5 * (EEPROM.read(i + 20));   //change - 14     EEFROM position should be change ===>> i+20
   }
 
 }
@@ -49,42 +49,47 @@ void qtrSave()      //change - 15     encoder count should be changed
 {
   //beep(100, 100, 100, 50);
 
-  leftCount = 0;
-  rightCount = 0;
-
-  for (int i = 0; i < 3; i++)
-  {
-    leftTurn(200, 200);
-    while (leftCount <= 150 && rightCount <= 150) qtr.calibrate();
-
-    brake();
-    leftCount = 0;
-    rightCount = 0;
-    delay(100);
-
-    rightTurn(200, 200);
-    while (leftCount <= 350 && rightCount <= 350) qtr.calibrate();
-
-    brake();
-    leftCount = 0;
-    rightCount = 0;
-    delay(100);
-
-    leftTurn(200, 200);
-    while (leftCount <= 150 && rightCount <= 150) qtr.calibrate();
-
-    brake();
-    leftCount = 0;
-    rightCount = 0;
-    delay(100);
-  }
+  //  leftCount = 0;
+  //  rightCount = 0;
+  //
+  //  for (int i = 0; i < 3; i++)
+  //  {
+  //    leftTurn(200, 200);
+  //    while (leftCount <= 150 && rightCount <= 150) qtr.calibrate();
+  //
+  //    brake();
+  //    leftCount = 0;
+  //    rightCount = 0;
+  //    delay(100);
+  //
+  //    rightTurn(200, 200);
+  //    while (leftCount <= 350 && rightCount <= 350) qtr.calibrate();
+  //
+  //    brake();
+  //    leftCount = 0;
+  //    rightCount = 0;
+  //    delay(100);
+  //
+  //    leftTurn(200, 200);
+  //    while (leftCount <= 150 && rightCount <= 150) qtr.calibrate();
+  //
+  //    brake();
+  //    leftCount = 0;
+  //    rightCount = 0;
+  //    delay(100);
+  //  }
+  int i;
+  for (int i = 0; i < 100; i++)
+    qtr.calibrate();
 
   brake();
   //Saving to EEPROM
   for (int i = 0; i < SensorCount; i++)
   {
     EEPROM.write(i, qtr.calibrationOn.minimum[i]);
-    EEPROM.write(i + 10, (qtr.calibrationOn.maximum[i] / 5)); //change - 13     EEFROM position should be change ===>> i+20
+    EEPROM.write(i + 20, (qtr.calibrationOn.maximum[i] / 5)); //change - 13     EEFROM position should be change ===>> i+20
   }
+  brake();
+//   beep();
 
 }

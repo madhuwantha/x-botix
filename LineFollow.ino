@@ -17,15 +17,22 @@ void setLineFollow(char manner)
       break;
 
     case 'S'://Slow
-      Kp = 0.1;
-      Kd = 1;
-      Ki = 0.001;
+      Kp = 0.0001;
+      Kd = 0.001;
+      Ki = 0.00000001;
       minSpeed = 0;
-      baseSpeed = 80;
-      maxSpeed = 100;
+      baseSpeed = 100;
+      maxSpeed = 150;
       break;
 
     case 'M'://Moderate
+      Kp = 0.08;
+      Kd = 2;
+      Ki = 0.0001;
+      minSpeed = 0;
+      baseSpeed = 150;
+      maxSpeed = 200;
+      break;
     default:
       Kp = 0.05;
       Kd = 2;
@@ -36,21 +43,21 @@ void setLineFollow(char manner)
       break;
 
     case 'F'://Fast
-      Kp = 0.05;
-      Kd = 5;
-      Ki = 0.001;
+      Kp = 0.089;
+      Kd = 1.2;
+      Ki = 0.009;
       minSpeed = 0;
-      baseSpeed = 150;
-      maxSpeed = 200;
+      baseSpeed = 200;
+      maxSpeed = 230;
       break;
 
     case 'V'://Very fast
-      Kp = 0.07;
-      Kd = 15;
-      Ki = 0.001;
+      Kp = 0.089;
+      Kd = 1.2;
+      Ki = 0.009;
       minSpeed = 0;
-      baseSpeed = 200;
-      maxSpeed = 255;
+      baseSpeed = 220;
+      maxSpeed = 245;
       break;
 
     case 'U'://Ultra fast
@@ -58,7 +65,7 @@ void setLineFollow(char manner)
       Kd = 15;
       Ki = 0.001;
       minSpeed = 0;
-      baseSpeed = 255;
+      baseSpeed = 245;
       maxSpeed = 255;
       break;
   }
@@ -69,23 +76,24 @@ void setLineFollow(char manner)
 
 void lineFollow()
 {
-  //  uint16_t position = qtr.readLineWhite(sensorValues); // get calibrated readings along with the line position, refer to the QTR Sensors Arduino Library for more details on line position.
   uint16_t position = qtr.readLineBlack(sensorValues);
   int error = position - 7000;
+  Serial.print(  error );
+  Serial.print(  "     " );
 
   integral = integral + error;
 
   int controlSpeed = Kp * error + Kd * (error - lastError) + Ki * integral;
-
+  Serial.print(  controlSpeed );
+  Serial.print(  "     " );
   lastError = error;
 
   byte rightMotorSpeed = constrain((baseSpeed - controlSpeed), minSpeed, maxSpeed);
   byte leftMotorSpeed = constrain((baseSpeed +   controlSpeed), minSpeed, maxSpeed);
 
-  Serial.print(  rightMotorSpeed );
+  Serial.print(  leftMotorSpeed );
   Serial.print(  "   " );
-  Serial.println(  leftMotorSpeed );
-
+  Serial.println(rightMotorSpeed   );
   motorSpeed(leftMotorSpeed, rightMotorSpeed);
 }
 
@@ -109,5 +117,5 @@ void lineFollowInMash()
   Serial.print(  "   " );
   Serial.println(  leftMotorSpeed );
 
-  motorSpeed(leftMotorSpeed, rightMotorSpeed);
+  //  motorSpeed(leftMotorSpeed, rightMotorSpeed);
 }

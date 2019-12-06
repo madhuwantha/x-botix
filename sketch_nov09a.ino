@@ -36,27 +36,50 @@ void setup() {
   pinMode(rightMotorBackward, OUTPUT);
   pinMode(rightMotorPWM, OUTPUT);
   pinMode(leftMotorPWM, OUTPUT);
+  //  pinMode(49, OUTPUT);
+  //  digitalWrite(49, HIGH);
 
   pinMode(2, INPUT_PULLUP);    //interrupts 0          //Interrupts assigning for Encoders
   pinMode(3, INPUT_PULLUP);    //interrupts 1
   attachInterrupt(0, leftISR, CHANGE);
   attachInterrupt(1, rightISR, CHANGE);
 
+
+
+
+  //delay(200);
   //qtrSave();
 
-  //  qtrLoad();
-  //  setLineFollow('M');
-  setEncoderPID( 'S' );
+
+  // delay(500) ;
+
+  qtrLoad();
+
+  //setEncoderPID('F');
+  setLineFollow( 'V' );
 
 } //end setup
 
 void loop() {
-  encoderPID();
-  
-  
+  //checkQTR();
+  lineFollow();
+  //encoderPID();
+  //lineFollow();
+  //    ontoT(1);
+  //    centerAtJunction();
+  //    turnAngle(90);
+  //  ontoL(1);
+
+
+
+
+
+  //digitalWrite(leftMotorForward, HIGH);
+  //forward();
+
   //checkQTR();
   //lineFollow();
-  //  delay( 1000000000000 );
+ // delay( 1000000000000 );
 
 
 }
