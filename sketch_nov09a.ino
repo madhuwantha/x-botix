@@ -107,4 +107,9 @@ void loop() {
   //centerAtJunction();
   //turnAngle(90);
   //ontoL(1);
+
+  //  char customKey = customKeypad.getKey();
+  //  if (customKey) {
+  //    Serial.println(customKey);
+  //  }
 }

@@ -36,27 +36,6 @@ char manner = 'F';
 volatile unsigned long leftCount = 0, rightCount = 0;
 
 
-//LCD Menu ------------------------------------------------------------------------------------------------------
-LiquidCrystal_I2C lcd(0x3F, 16, 2); // set the LCD address to 0x27 for a 16 chars and 2 line display
-
-
-//Key Pad ------------------------------------------------------------------------------------------------------
-const byte ROWS = 1; //four rows
-const byte COLS = 6; //four columns
-//define the cymbols on the buttons of the keypads
-char hexaKeys[ROWS][COLS] = {
-  {'A', 'B', 'C', 'D', 'E', 'F'}      //change - 10     change buttons names
-};
-byte rowPins[ROWS] = {40}; //connect to the row pinouts of the keypad
-byte colPins[COLS] = {34, 35, 36, 37, 38, 39}; //connect to the column pinouts of the keypad
-
-//initialize an instance of class NewKeypad
-Keypad customKeypad = Keypad( makeKeymap(hexaKeys), rowPins, colPins, ROWS, COLS);
-
-char customKey;
-
-
-
 // ******************************Color Detection*********************************************//
 #define redpin 3
 #define greenpin 5
@@ -82,3 +61,24 @@ Servo leftServo;
 Servo rightServo;
 // right servo 11
 // left servo 12
+
+
+
+// ******************************Arm*********************************************//
+//B - 7
+//L - 8
+//R - 9
+
+
+// ******************************Key pad*********************************************//
+const byte ROWS = 1; //four rows
+const byte COLS = 6; //four columns
+//define the cymbols on the buttons of the keypads
+char hexaKeys[ROWS][COLS] = {
+  {'A','B','C','D','E','F'}
+};
+byte rowPins[ROWS] = {31}; //connect to the row pinouts of the keypad
+byte colPins[COLS] = {33,35,37,39,41,43}; //connect to the column pinouts of the keypad
+
+//initialize an instance of class NewKeypad
+Keypad customKeypad = Keypad( makeKeymap(hexaKeys), rowPins, colPins, ROWS, COLS); 
