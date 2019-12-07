@@ -57,5 +57,28 @@ char customKey;
 
 
 
+// ******************************Color Detection*********************************************//
+#define redpin 3
+#define greenpin 5
+#define bluepin 6
+
+#define SDApinO 24
+#define SCLpinO 26
+#define SDApinN 28
+#define SCLpinN 30
+
+#define commonAnode true
+
+byte gammatable[256];
+
+Adafruit_TCS34725softi2c tcsN = Adafruit_TCS34725softi2c(TCS34725_INTEGRATIONTIME_50MS, TCS34725_GAIN_4X, SDApinN, SCLpinN);
+Adafruit_TCS34725softi2c tcsO = Adafruit_TCS34725softi2c(TCS34725_INTEGRATIONTIME_50MS, TCS34725_GAIN_4X, SDApinO, SCLpinO);
+
+int colorCount;
+char colorAreaA;
+char colorAreaC[4];
+//color sorvo
+Servo leftServo;
+Servo rightServo;
 // right servo 11
 // left servo 12

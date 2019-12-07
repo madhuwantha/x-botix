@@ -1,7 +1,10 @@
 #include <EEPROM.h>
 #include <QTRSensors.h>
 #include <LiquidCrystal_I2C.h>
+#include <Servo.h>
 #include <Keypad.h>
+#include <Wire.h>
+#include "Adafruit_TCS34725softi2c.h"
 
 #include "define.h"
 void leftISR() //ISR for left motor count
@@ -45,41 +48,63 @@ void setup() {
   attachInterrupt(1, rightISR, CHANGE);
 
 
+  // ******************************Color Detection***********************************
+  //color servo
+  leftServo.attach(12);
+  rightServo.attach(11);
+
+  // use these three pins to drive an LED
+  pinMode(redpin, OUTPUT);
+  pinMode(greenpin, OUTPUT);
+  pinMode(bluepin, OUTPUT);
+
+  if (tcsN.begin()) {
+    Serial.println("Found New sensor");
+  } else {
+    Serial.println("No TCS34725 found ... check your connections");
+    while (1); // halt!
+  }
+
+  if (tcsO.begin()) {
+    Serial.println("Found Old sensor");
+  } else {
+    Serial.println("No TCS34725 found ... check your connections");
+    while (1); // halt!
+  }
+
+  // thanks PhilB for this gamma table!
+  // it helps convert RGB colors to what humans see
+  for (int i = 0; i < 256; i++) {
+    float x = i;
+    x /= 255;
+    x = pow(x, 2.5);
+    x *= 255;
+
+    if (commonAnode) {
+      gammatable[i] = 255 - x;
+    } else {
+      gammatable[i] = x;
+    }
+  }
 
 
-  //delay(200);
+
+
   //qtrSave();
-
-
-  // delay(500) ;
-
-  qtrLoad();
-
+  //qtrLoad();
   //setEncoderPID('F');
-  setLineFollow( 'V' );
+  //setLineFollow( 'V' );
 
+  colorServoIntiate();
 } //end setup
 
 void loop() {
   //checkQTR();
-  lineFollow();
+  //lineFollow();
   //encoderPID();
   //lineFollow();
-  //    ontoT(1);
-  //    centerAtJunction();
-  //    turnAngle(90);
-  //  ontoL(1);
-
-
-
-
-
-  //digitalWrite(leftMotorForward, HIGH);
-  //forward();
-
-  //checkQTR();
-  //lineFollow();
- // delay( 1000000000000 );
-
-
+  //ontoT(1);
+  //centerAtJunction();
+  //turnAngle(90);
+  //ontoL(1);
 }
