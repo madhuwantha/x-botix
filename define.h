@@ -59,6 +59,10 @@ char colorAreaC[4];
 //color sorvo
 Servo leftServo;
 Servo rightServo;
+Servo baseServo;
+Servo leftCatchServo;
+Servo rightCatchServo;
+
 // right servo 11
 // left servo 12
 
@@ -82,3 +86,4 @@ byte colPins[COLS] = {33,35,37,39,41,43}; //connect to the column pinouts of the
 
 //initialize an instance of class NewKeypad
 Keypad customKeypad = Keypad( makeKeymap(hexaKeys), rowPins, colPins, ROWS, COLS); 
+char customKey;

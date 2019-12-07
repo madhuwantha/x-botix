@@ -47,12 +47,19 @@ void setup() {
   attachInterrupt(0, leftISR, CHANGE);
   attachInterrupt(1, rightISR, CHANGE);
 
+  //LED pin
+  for ( int i = 34; i < 43; i = i + 2 ) {
+    pinMode(i, OUTPUT);
+  }
 
-  // ******************************Color Detection***********************************
-  //color servo
+  // servo
   leftServo.attach(12);
   rightServo.attach(11);
+  baseServo.attach(7);
+  leftCatchServo.attach(8);
+  rightCatchServo.attach(9);
 
+  // ******************************Color Detection***********************************
   // use these three pins to drive an LED
   pinMode(redpin, OUTPUT);
   pinMode(greenpin, OUTPUT);
@@ -93,12 +100,21 @@ void setup() {
   //qtrSave();
   //qtrLoad();
   //setEncoderPID('F');
-  //setLineFollow( 'V' );
+  //setLineFollow( 'V' );`
 
-  colorServoIntiate();
+  ServoIntiate();
 } //end setup
 
 void loop() {
+
+  customKey = customKeypad.getKey();
+
+  if (customKey) {
+    Serial.println(customKey);
+  }
+
+  servoMake();
+
   //checkQTR();
   //lineFollow();
   //encoderPID();

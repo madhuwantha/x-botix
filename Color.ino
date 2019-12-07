@@ -64,14 +64,14 @@ char twoColor(Adafruit_TCS34725softi2c sensorN, Adafruit_TCS34725softi2c sensorO
   //  return(colorAreaC);
 
   if (sizeof(colorAreaC) == 0) {
-    colorAreaC[0]=color[0];
-    colorAreaC[1]=color[1];
+    colorAreaC[0] = color[0];
+    colorAreaC[1] = color[1];
   }
-  else{
-    colorAreaC[2]=color[0];
-    colorAreaC[3]=color[1];
+  else {
+    colorAreaC[2] = color[0];
+    colorAreaC[3] = color[1];
 
-    
+
   }
 
 }
@@ -113,4 +113,12 @@ char oneColor(Adafruit_TCS34725softi2c sensorN) {
 
   //  return (colorAreaA);
 
+}
+
+
+
+
+void servoMake() {
+  leftColorServo(120);
+  rightColorServo(120);
 }
