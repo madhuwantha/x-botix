@@ -12,7 +12,11 @@
 
 
 //RGB 34 36 38
-
+void doubleLight() {
+  analogWrite( 42, 150 ); analogWrite( 40, 150 );
+  delay( 200 );
+  analogWrite( 42, 0 ); analogWrite( 40, 0 );
+}
 void leftLight(  ) {
   analogWrite( 42, 150 );
   delay( 200 );

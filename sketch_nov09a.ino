@@ -43,9 +43,9 @@ void setup() {
   //  digitalWrite(49, HIGH);
 
   pinMode(2, INPUT_PULLUP);    //interrupts 0          //Interrupts assigning for Encoders
-  pinMode(3, INPUT_PULLUP);    //interrupts 1
+  pinMode(19, INPUT_PULLUP);    //interrupts 1
   attachInterrupt(0, leftISR, CHANGE);
-  attachInterrupt(1, rightISR, CHANGE);
+  attachInterrupt(4, rightISR, CHANGE);
 
   //LED pin
   for ( int i = 34; i < 43; i = i + 2 ) {
@@ -98,34 +98,62 @@ void setup() {
 
 
   //qtrSave();
-  //qtrLoad();
-  //setEncoderPID('F');
-  //setLineFollow( 'V' );`
+  qtrLoad();
+
+
 
   ServoIntiate();
+  while ( 1 ) {
+    customKey = customKeypad.getKey();
+    if (customKey) {
+      Serial.println(customKey);
+      switch (customKey)
+      {
+        case 'A'://Xtremely Slow
+          manner = 'M';
+          leftLight();
+          break;
+        case 'B':
+          rightLight();
+          manner = 'F';
+          break;
+        case 'F':
+          rightLight();
+          manner = 'S';
+          break;
+        case 'E':
+          doubleLight();
+          delay(1000);
+          break;
+      }
+      break;
+    }
+  }
+  setLineFollow( manner );
+  setEncoderPID('F');
 } //end setup
 
 void loop() {
+  //  Serial.println(leftCount);
 
-  customKey = customKeypad.getKey();
-
-  if (customKey) {
-    Serial.println(customKey);
-  }
-
-  servoMake();
+  //
+  //  servoMake();
 
   //checkQTR();
-  //lineFollow();
-  //encoderPID();
+  //  lineFollow();
+  //  ontoT(1);
+  //  encoderPID();
   //lineFollow();
   //ontoT(1);
-  //centerAtJunction();
+  ontoL(1);
+  centerAtJunction();
+  delay(1000);
+  turnAngle(180);
   //turnAngle(90);
-  //ontoL(1);
-
+  //qtrDigitalCheck();
   //  char customKey = customKeypad.getKey();
   //  if (customKey) {
   //    Serial.println(customKey);
   //  }
+  //delay(110000000000000000);
 }

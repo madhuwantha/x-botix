@@ -28,8 +28,8 @@ void setEncoderPID(char manner)
       Kd = 50;
       //Ki = ;
       minSpeed = 70;
-      baseSpeed = 100;
-      maxSpeed = 130;
+      baseSpeed = 130;
+      maxSpeed = 170;
       break;
 
     case 'M'://Moderate

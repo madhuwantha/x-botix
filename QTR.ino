@@ -28,6 +28,18 @@ void qtrRead()
   }
 }
 
+void qtrDigitalCheck()
+{
+  qtrRead();
+  for (int i = 0; i < SensorCount ; i++ )
+  {
+    Serial.print(dval[i]);
+    Serial.print("    ");
+  }
+  Serial.println("");
+  delay(50);
+}
+
 void qtrLoad()
 {
   qtr.calibrate();
@@ -90,6 +102,6 @@ void qtrSave()      //change - 15     encoder count should be changed
     EEPROM.write(i + 20, (qtr.calibrationOn.maximum[i] / 5)); //change - 13     EEFROM position should be change ===>> i+20
   }
   brake();
-//   beep();
+  //   beep();
 
 }

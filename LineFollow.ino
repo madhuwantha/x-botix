@@ -17,18 +17,18 @@ void setLineFollow(char manner)
       break;
 
     case 'S'://Slow
-      Kp = 0.0001;
-      Kd = 0.001;
-      Ki = 0.00000001;
+      Kp = 0.089;
+      Kd = 1.2;
+      Ki = 0.009;
       minSpeed = 0;
-      baseSpeed = 100;
-      maxSpeed = 150;
+      baseSpeed = 130;
+      maxSpeed = 170;
       break;
 
     case 'M'://Moderate
-      Kp = 0.08;
-      Kd = 2;
-      Ki = 0.0001;
+      Kp = 0.089;
+      Kd = 1.2;
+      Ki = 0.009;
       minSpeed = 0;
       baseSpeed = 150;
       maxSpeed = 200;
@@ -78,22 +78,22 @@ void lineFollow()
 {
   uint16_t position = qtr.readLineBlack(sensorValues);
   int error = position - 7000;
-  Serial.print(  error );
-  Serial.print(  "     " );
+//  Serial.print(  error );
+//  Serial.print(  "     " );
 
   integral = integral + error;
 
   int controlSpeed = Kp * error + Kd * (error - lastError) + Ki * integral;
-  Serial.print(  controlSpeed );
-  Serial.print(  "     " );
+//  Serial.print(  controlSpeed );
+//  Serial.print(  "     " );
   lastError = error;
 
   byte rightMotorSpeed = constrain((baseSpeed - controlSpeed), minSpeed, maxSpeed);
   byte leftMotorSpeed = constrain((baseSpeed +   controlSpeed), minSpeed, maxSpeed);
 
-  Serial.print(  leftMotorSpeed );
-  Serial.print(  "   " );
-  Serial.println(rightMotorSpeed   );
+//  Serial.print(  leftMotorSpeed );
+//  Serial.print(  "   " );
+//  Serial.println(rightMotorSpeed   );
   motorSpeed(leftMotorSpeed, rightMotorSpeed);
 }
 

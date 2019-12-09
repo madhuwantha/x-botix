@@ -21,7 +21,7 @@ int integral = 0;
 int rightMotorSpeed;
 int leftMotorSpeed;
 
-char manner = 'F';
+char manner;
 #define junctionCount 550 //encoder counts needed to bring the robot at center of juction
 
 //Mototrs -------------------------------------------

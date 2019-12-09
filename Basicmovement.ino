@@ -10,7 +10,7 @@ void lineFollowMove(int count)
 }
 
 void centerAtJunction() {
-  encoderMove( 100 );
+  encoderMove( 210 );
 }
 
 void encoderMove(int count)
@@ -101,6 +101,7 @@ void ontoT(bool BRAKE)
     if (dval[0] && dval[1] && dval[14] && dval[15])      //16-qtr - 3
     {
       if (BRAKE) brake();
+      doubleLight();
       break;
     }
     lineFollow();
@@ -116,6 +117,11 @@ void ontoL(bool BRAKE)
     if ( (dval[0] && dval[1]) || (dval[14] && dval[15]) )      //16-qtr - 4
     {
       if (BRAKE) brake();
+      if ((dval[0] && dval[1])) {
+        leftLight();
+      } else  if ((dval[14] && dval[15])) {
+        rightLight();
+      }
       break;
     }
     lineFollow();
@@ -160,65 +166,55 @@ void turnAngle(int angle)   //change - 7    encoder counts for turns
   {
     case -90: //anticlockwise 90 degree,   total count 740
       leftTurn();
-
       setEncoderPID('X');
-      while (leftCount < 50 && rightCount < 50) encoderPID();
-
+      leftTurn();
+      countStart();
+      while (leftCount < 70 && rightCount < 70) encoderPID();
       setEncoderPID('F');
-      while (leftCount < 100 && rightCount < 100) encoderPID();
-
-      setEncoderPID('M');
-      while (leftCount < 150 && rightCount < 150) encoderPID();
-
-      setEncoderPID('S');
-      while (leftCount < 200 && rightCount < 200) encoderPID();
-
+      leftTurn();
+      countStart();
+      while (leftCount < 70 && rightCount < 70) encoderPID();
       break;
-
-
     case 90: //clockwise 90 degree
-      rightTurn(250,250);
-
-      //      setEncoderPID('X');
-      //      while (leftCount < 50 && rightCount < 50) encoderPID();
-
+      setEncoderPID('X');
+      rightTurn();
+      countStart();
+      while (leftCount < 70 && rightCount < 70) encoderPID();
       setEncoderPID('F');
       rightTurn();
-      while (leftCount < 100 && rightCount < 100) encoderPID();
-
-      setEncoderPID('M');
-      rightTurn();
-      while (leftCount < 150 && rightCount < 150) encoderPID();
-
-      setEncoderPID('M');
-      rightTurn();
-      while (leftCount < 200 && rightCount < 200) encoderPID();
-
+      countStart();
+      while (leftCount < 70 && rightCount < 70) encoderPID();
       break;
 
     case 180: //clockwise 90 degree, total count 1420
+      setEncoderPID('X');
       rightTurn();
-
-      //      setEncoderPID('X');
-      //      while (leftCount < 200 && rightCount < 200) encoderPID();
-
+      countStart();
+      while (leftCount < 120 && rightCount < 120) encoderPID();
       setEncoderPID('F');
-      while (leftCount < 200 && rightCount < 200) encoderPID();
-
-      setEncoderPID('M');
-      while (leftCount < 300 && rightCount < 300) encoderPID();
-
-      setEncoderPID('S');
-      while (leftCount < 800 && rightCount < 800) encoderPID();
+      rightTurn();
+      countStart();
+      while (leftCount < 70 && rightCount < 70) encoderPID();
       break;
   }
 
-  setEncoderPID('F');
-  rightTurn();
+  setEncoderPID('S');
+  switch (angle)
+  {
+    case -90:
+      leftTurn();
+      break;
+    case 90:
+      rightTurn();
+      break;
+    case 180:
+      rightTurn();
+      break;
+  }
   while (1)
   {
     qtrRead();
-    if (dval[7] || dval[8])      //16-qtr - 7
+    if ( dval[6] && dval[7] && dval[8])      //16-qtr - 7
     {
       brake();
       break;
