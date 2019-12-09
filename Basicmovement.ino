@@ -30,14 +30,15 @@ void encoderMove(int count)
 void leaveSquare()
 {
   //Leaving starting   zone --------------------------------
-  setEncoderPID('E');
+  setEncoderPID('S');
   forward();
   qtrRead();
-  while (dval[0] || dval[15])      //16-qtr - 1
+  while ( dval[0] || dval[15])      //16-qtr - 1
   {
     encoderPID();
     qtrRead();
   }
+  brake();
   ontoLine(100);
 }
 
