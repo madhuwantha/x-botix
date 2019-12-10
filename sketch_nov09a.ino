@@ -93,73 +93,10 @@ void setup() {
       gammatable[i] = x;
     }
   }
-
-
-
-
-  //qtrSave();
-  qtrLoad();
-
-
-
   ServoIntiate();
-  while ( 1 ) {
-    customKey = customKeypad.getKey();
-    if (customKey) {
-      Serial.println(customKey);
-      switch (customKey)
-      {
-        case 'A':
-          leftLight();
-          manner = 'M';
-          break;
-        case 'B':
-          rightLight();
-          manner = 'F';
-          break;
-        case 'F':
-          leftLight();
-          rightLight();
-          manner = 'S';
-          break;
-        case 'E':
-          doubleLight();
-          delay(1000);
-          break;
-      }
-      break;
-    }
-  }
-  setLineFollow( manner );
-  setEncoderPID('F');
+  keyPad ();
 } //end setup
 
 void loop() {
 
-  //Serial.println("loop");
-  leaveSquare();
-  //  baseToCatch();
-  //  delay(200);
-  //  catchSorb();
-  //  delay(500);
-  //  up();
-  //  Serial.println(leftCount);
-  //  servoMake();
-  //checkQTR();
-  //  lineFollow();
-  //  ontoT(1);
-  //  encoderPID();
-  //lineFollow();
-  //ontoT(1);
-  //  ontoL(1);
-  //  centerAtJunction();
-  //  delay(1000);
-  //  turnAngle(180);
-  //turnAngle(90);
-  //qtrDigitalCheck();
-  //  char customKey = customKeypad.getKey();
-  //  if (customKey) {
-  //    Serial.println(customKey);
-  //  }
-  delay(110000000000000000);
 }

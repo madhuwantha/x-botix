@@ -87,3 +87,8 @@ byte colPins[COLS] = {33,35,37,39,41,43}; //connect to the column pinouts of the
 //initialize an instance of class NewKeypad
 Keypad customKeypad = Keypad( makeKeymap(hexaKeys), rowPins, colPins, ROWS, COLS); 
 char customKey;
+
+
+
+// ******************************Mesh*********************************************//
+char junction;

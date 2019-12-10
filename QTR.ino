@@ -1,3 +1,8 @@
+void checkJunction() {
+  qtrRead();
+    
+}
+
 void checkQTR()
 {
   //  uint16_t position = qtr.readLineWhite(sensorValues);
@@ -102,6 +107,7 @@ void qtrSave()      //change - 15     encoder count should be changed
     EEPROM.write(i + 20, (qtr.calibrationOn.maximum[i] / 5)); //change - 13     EEFROM position should be change ===>> i+20
   }
   brake();
+  doubleLight();
   //   beep();
 
 }

@@ -39,7 +39,7 @@ void leaveSquare()
     qtrRead();
   }
   brake();
-  ontoLine(100);
+  //ontoLine(100);
 }
 
 void enterSquare()
