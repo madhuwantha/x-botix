@@ -111,6 +111,26 @@ void firstRound() {
     turnAngle(-90);
     ontoL(0);
     centerAtJunction();
-    turnAngle(90); // before the J
+    switch (colorCount) {
+      case 1:
+        ontoT(1);
+        break;
+      case 2:
+        turnAngle(90);
+        ontoL(0);
+        centerAtJunction();
+        turnAngle(-90);
+        break;
+      case 3:
+        turnAngle(90);
+        ontoL(0);
+        centerAtJunction();
+        ontoL(0);
+        centerAtJunction();
+        turnAngle(-90);
+        break;
+    }
+    ontoT(1);
+    putSword();
   }
 }

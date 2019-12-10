@@ -72,3 +72,7 @@ void blue() {
 void getSword() {
 
 }
+
+void putSword() {
+
+}
