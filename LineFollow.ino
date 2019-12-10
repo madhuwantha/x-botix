@@ -68,7 +68,7 @@ void setLineFollow(char manner)
       baseSpeed = 245;
       maxSpeed = 255;
       break;
-    case 'B'://Ultra fast
+    case 'B'://backword
       backward();
       Kp = 0.089;
       Kd = 1.2;

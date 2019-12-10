@@ -23,7 +23,7 @@ int leftMotorSpeed;
 
 char manner;
 #define junctionCount 550 //encoder counts needed to bring the robot at center of juction
-
+#define skipJunction  120
 //Mototrs -------------------------------------------
 #define leftMotorForward 53//48  //motor directions
 #define leftMotorBackward 52//46
@@ -31,6 +31,7 @@ char manner;
 #define rightMotorBackward 50//52
 #define rightMotorPWM 4 //PWM controls
 #define leftMotorPWM 5//9
+#define brakeTime 40
 
 //Encorders---------------------------------------------------
 volatile unsigned long leftCount = 0, rightCount = 0;
@@ -53,9 +54,9 @@ byte gammatable[256];
 Adafruit_TCS34725softi2c tcsN = Adafruit_TCS34725softi2c(TCS34725_INTEGRATIONTIME_50MS, TCS34725_GAIN_4X, SDApinN, SCLpinN);
 Adafruit_TCS34725softi2c tcsO = Adafruit_TCS34725softi2c(TCS34725_INTEGRATIONTIME_50MS, TCS34725_GAIN_4X, SDApinO, SCLpinO);
 
-int colorCount;
+int colorCount = 0;
 char colorAreaA;
-char colorAreaC[4];
+char colorAreaC[4] = {  };
 //color sorvo
 Servo leftServo;
 Servo rightServo;

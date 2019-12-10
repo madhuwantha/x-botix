@@ -93,6 +93,8 @@ void setup() {
       gammatable[i] = x;
     }
   }
+
+  
   ServoIntiate();
   keyPad ();
 } //end setup

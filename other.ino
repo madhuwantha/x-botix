@@ -9,7 +9,28 @@
 // white - -
 //graw   - +
 //yellow - signal
-
+void light( char mode  ) {
+  switch (mode) {
+    case 'R':
+      analogWrite( 34, 150 );
+      break;
+    case 'G':
+      analogWrite( 36, 150 );
+      break;
+    case 'B':
+      analogWrite( 38, 150 );
+      break;
+    case 'O':
+      analogWrite( 34, 0 );
+      analogWrite( 36, 0 );
+      analogWrite( 38, 0 );
+      analogWrite( 42, 0 );
+      analogWrite( 40, 0 );
+      break;
+    default:
+      break;
+  }
+}
 
 //RGB 34 36 38
 void doubleLight() {
@@ -44,4 +65,10 @@ void blue() {
   analogWrite( 38, 150 );
   delay( 200 );
   analogWrite( 38, 0 );
+}
+
+
+
+void getSword() {
+
 }
