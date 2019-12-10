@@ -70,7 +70,11 @@ void blue() {
 
 
 void getSword() {
-
+  baseToCatch();
+  delay(500);
+  catchSorb();
+  delay(500);
+  up();
 }
 
 void putSword() {

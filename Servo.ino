@@ -49,5 +49,5 @@ void baseToCatch() {
   baseServoRotate(02);
 }
 void up() {
-  baseServoRotate(120);
+  baseServoRotate(100);
 }

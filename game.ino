@@ -1,51 +1,65 @@
 void game() {
   while ( 1 ) {
-    lineFollow();
+    //    lineFollow();
   }
 }
 
 void firstRound() {
   while ( 1 ) {
     leaveSquare(); // start
-    ontoL(0); // to A
-    centerAtJunction(); //to A
+    ontoL(1); // to A
+    centerAtJunction(L); //to A
     turnAngle(90); //to A
-    ontoT(1); // A
-    // detect the color oneColor( tcsN );
+    ontoBreakPoint(1); // A
+    encoderMove(30);
+    setColorServo();
+    delay(100);
+    oneColor( tcsN ); // detect the color
+    colorServoIntiate();
+    encoderMove(-200);
     turnAngle(180);
-    ontoT(0);
-    centerAtJunction();
-    turnAngle(90);
-    ontoT(0);
-    centerAtJunction();
-    encoderMove(skipJunction);
-    ontoT( 1 ); //  break point B twoColor( tcsN, tcsO );
-    //detect color B 1
-    setLineFollow('B');
-    ontoL(0);
-    setLineFollow(manner);
-    centerAtJunction();
-    turnAngle(-90);
-    ontoL(0);
-    centerAtJunction();
-    turnAngle(90);
-    ontoL(0);
-    centerAtJunction();
+    light('O');
+    ontoT(1);
+    centerAtJunction(T);
     turnAngle(90);
     ontoT(1);
-    //detect color B  2  twoColor( tcsN, tcsO );
-    setLineFollow('B');
-    ontoL(0);
-    setLineFollow(manner);
+    centerAtJunction(T - 100);
+    ontoBreakPoint(1); //  break point B twoColor( tcsN, tcsO );
+    setColorServo();
+    delay(100);
+    twoColor( tcsN, tcsO );//detect color B 1
+    colorServoIntiate();
+    encoderMove(-200);
+    turnAngle(180);
+    encoderMove(-200);
+    ontoL(1);
+    centerAtJunction(L);
     turnAngle(90);
-    ontoL(0);
-    centerAtJunction();
+    ontoL(1);
+    centerAtJunction(L);
+    turnAngle(90);
+    ontoL(1);
+    centerAtJunction(L);
+    turnAngle(90);
+    ontoBreakPoint(1);
+    setColorServo();
+    delay(100);
+    twoColor( tcsN, tcsO );//detect color B  2  twoColor( tcsN, tcsO );
+    colorServoIntiate();
+    encoderMove(-200);
+    turnAngle(180);
+    encoderMove(-200);
+    ontoL(1);
+    centerAtJunction(L);
     turnAngle(-90);
-    ontoT(0);
-    centerAtJunction();
+    ontoL(1);
+    centerAtJunction(L);
+    turnAngle(-90);
+    ontoT(1);
+    centerAtJunction(T);
     turnAngle(90); // finishedd the B
-    ontoT(0);
-    centerAtJunction();
+    ontoT(1);
+    centerAtJunction(T);
     turnAngle(-90);
     ontoT(1);
     enterSquare();
@@ -53,64 +67,66 @@ void firstRound() {
     delay(1000);
     light( 'O' );
     encoderbackTurn();
-    leaveSquare();
-    ontoT(0); // crose line after C
-    centerAtJunction();
-    encoderMove(skipJunction);
-    ontoT(0);  // 2nd crose line after C
-    centerAtJunction();
+    //leaveSquare();
+    
+    ontoT(1); // crose line after C
+    centerAtJunction(T);
+    ontoT(1);  // 2nd crose line after C
+    centerAtJunction(T);
     turnAngle(90);
-    ontoL(0);
-    centerAtJunction();
+    ontoL(1);
+    centerAtJunction(L);
     turnAngle(-90); // before the dash liine
     onToDashLine();
-    centerAtJunction();
+    while( 1 ){}
+    
+    centerAtJunction(T);
     turnAngle(-90);
     encoderMove( 400 );
     turnAngle(180);
     pushButton(); // push button
     ontoL(0);
-    centerAtJunction();
+    centerAtJunction(L);
     ontoL(0);
-    centerAtJunction();
+    centerAtJunction(L);
     ontoT(0); // before the ramp
-    centerAtJunction();
+    centerAtJunction(T);
     ontoT(0); // after the ramp
-    centerAtJunction();
+    centerAtJunction(T);
     ontoL(0);
-    centerAtJunction();
+    centerAtJunction(L);
     turnAngle(90);
     onToMesh( );
     mesh(); // mesh
     ontoL(0);
-    centerAtJunction();
+    centerAtJunction(L);
     turnAngle(-90);
     ontoL(0);
-    centerAtJunction();
+    centerAtJunction(L);
     turnAngle(-90);
     ontoT(1); // in the room 1
     getSword();
     turnAngle(180);
     ontoT(0);
-    centerAtJunction();
+    centerAtJunction(T);
     turnAngle(90);
     ontoL(0);
-    centerAtJunction();
+    centerAtJunction(L);
     turnAngle(90);
     onToMesh( );
     goHome(); // shotest path
     ontoL(0);
-    centerAtJunction();
+    centerAtJunction(L);
     turnAngle(-90);
     ontoT(0);
-    centerAtJunction();
+    centerAtJunction(T);
     ontoT(0);
-    centerAtJunction();
+    centerAtJunction(T);
     ontoL(0);
-    centerAtJunction();
+    centerAtJunction(L);
     turnAngle(-90);
     ontoL(0);
-    centerAtJunction();
+    centerAtJunction(L);
     switch (colorCount) {
       case 1:
         ontoT(1);
@@ -118,15 +134,15 @@ void firstRound() {
       case 2:
         turnAngle(90);
         ontoL(0);
-        centerAtJunction();
+        centerAtJunction(L);
         turnAngle(-90);
         break;
       case 3:
         turnAngle(90);
         ontoL(0);
-        centerAtJunction();
+        centerAtJunction(L);
         ontoL(0);
-        centerAtJunction();
+        centerAtJunction(L);
         turnAngle(-90);
         break;
     }

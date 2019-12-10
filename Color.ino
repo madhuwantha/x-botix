@@ -1,7 +1,7 @@
 
 
 //For Area C
-char twoColor(Adafruit_TCS34725softi2c sensorN, Adafruit_TCS34725softi2c sensorO) {
+void twoColor(Adafruit_TCS34725softi2c sensorN, Adafruit_TCS34725softi2c sensorO) {
   uint16_t clearN, redN, greenN, blueN, calcMaxN, maxN;
   uint16_t clearO, redO, greenO, blueO, calcMaxO, maxO;
   char color[2];
@@ -18,27 +18,33 @@ char twoColor(Adafruit_TCS34725softi2c sensorN, Adafruit_TCS34725softi2c sensorO
   sensorO.setInterrupt(true);
 
   if (redN > greenN && redN > blueN) {
+    leftLight(  ); light('R');
     color[0] = "R";
     /// Serial.println("LEFT COLOR == REDn");
   }
   else if (greenN > redN && greenN > blueN) {
+    leftLight(  ); light('G');
     color[0] = "G";
     //Serial.println("LEFT COLOR == GREENn");
   }
   else if (blueN > greenN && blueN > redN) {
+    leftLight(  ); light('B');
     color[0] = "B";
     //Serial.println("LEFT COLOR == BLUEn");
   }
 
   if (redO > greenO && redO > blueO) {
+    rightLight(  ); light('R');
     color[1] = "R";
     //Serial.println("\t\t\tRIGHT COLOR == REDo");
   }
   else if (greenO > redO && greenO > blueO) {
+    rightLight(  ); light('G');
     color[1] = "G";
     //Serial.println("\t\t\tRIGHT COLOR == GREENo");
   }
   else if (blueO > greenO && blueO > redO) {
+    rightLight(  ); light('B');
     color[1] = "B";
     //Serial.println("\t\t\tRIGHT COLOR == BLUEo");
   }
@@ -63,15 +69,16 @@ char twoColor(Adafruit_TCS34725softi2c sensorN, Adafruit_TCS34725softi2c sensorO
   //Serial.println();
   //  return(colorAreaC);
 
-  if (sizeof(colorAreaC) == 0) {
+  if  (  colorArray == 0) {
     colorAreaC[0] = color[0];
     colorAreaC[1] = color[1];
+    colorArray = 1;
   }
   else {
     colorAreaC[2] = color[0];
     colorAreaC[3] = color[1];
   }
-
+  light('O');
 }
 
 
@@ -89,17 +96,17 @@ char oneColor(Adafruit_TCS34725softi2c sensorN) {
 
   if (redN > greenN && redN > blueN) {
     colorAreaA = "R";
-    red();
+    light('R');
     //Serial.println("LEFT COLOR == REDn");
   }
   else if (greenN > redN && greenN > blueN) {
     colorAreaA = "G";
-    green();
+    light('G');
     //Serial.println("LEFT COLOR == GREENn");
   }
   else if (blueN > greenN && blueN > redN) {
     colorAreaA = "B";
-    blue();
+    light('B');
     //Serial.println("LEFT COLOR == BLUEn");
   }
 
@@ -117,7 +124,7 @@ char oneColor(Adafruit_TCS34725softi2c sensorN) {
 }
 
 void IndicateinC() {
-  for ( int i = 1; i < 4; i++ ) {
+  for ( int i = 0; i < 4; i++ ) {
     if ( colorAreaC[i] == colorAreaA ) {
       colorCount = colorCount + 1;
     }
@@ -132,8 +139,6 @@ void IndicateinC() {
     case 'B':
       light( 'B' );
       break;
-    default:
-      break;
   }
 
   switch (colorCount) {
@@ -143,8 +148,6 @@ void IndicateinC() {
     case 3:
       analogWrite( 42, 150 );
       analogWrite( 40, 150 );
-      break;
-    default:
       break;
   }
 

@@ -94,11 +94,12 @@ void setup() {
     }
   }
 
-  
+
   ServoIntiate();
   keyPad ();
 } //end setup
 
 void loop() {
-
+  firstRound();
+  delay(1000000000000000000);
 }

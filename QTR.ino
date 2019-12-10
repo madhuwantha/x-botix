@@ -66,35 +66,35 @@ void qtrSave()      //change - 15     encoder count should be changed
 {
   //beep(100, 100, 100, 50);
 
-  //  leftCount = 0;
-  //  rightCount = 0;
-  //
-  //  for (int i = 0; i < 3; i++)
-  //  {
-  //    leftTurn(200, 200);
-  //    while (leftCount <= 150 && rightCount <= 150) qtr.calibrate();
-  //
-  //    brake();
-  //    leftCount = 0;
-  //    rightCount = 0;
-  //    delay(100);
-  //
-  //    rightTurn(200, 200);
-  //    while (leftCount <= 350 && rightCount <= 350) qtr.calibrate();
-  //
-  //    brake();
-  //    leftCount = 0;
-  //    rightCount = 0;
-  //    delay(100);
-  //
-  //    leftTurn(200, 200);
-  //    while (leftCount <= 150 && rightCount <= 150) qtr.calibrate();
-  //
-  //    brake();
-  //    leftCount = 0;
-  //    rightCount = 0;
-  //    delay(100);
-  //  }
+    leftCount = 0;
+    rightCount = 0;
+  
+    for (int i = 0; i < 3; i++)
+    {
+      leftTurn(170, 170);
+      while (leftCount <= 170 && rightCount <= 170) qtr.calibrate();
+  
+      brake( 'R' );
+      leftCount = 0;
+      rightCount = 0;
+      delay(100);
+  
+      rightTurn(170, 170);
+      while (leftCount <= 340 && rightCount <= 340) qtr.calibrate();
+  
+      brake('L');
+      leftCount = 0;
+      rightCount = 0;
+      delay(100);
+  
+      leftTurn(170, 170);
+      while (leftCount <= 170 && rightCount <= 170) qtr.calibrate();
+  
+      brake('R');
+      leftCount = 0;
+      rightCount = 0;
+      delay(100);
+    }
   int i;
   for (int i = 0; i < 100; i++)
     qtr.calibrate();

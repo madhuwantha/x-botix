@@ -6,6 +6,7 @@ void keyPad () {
       //Serial.println(customKey);
       switch (customKey)
       {
+
         case 'A':
           qtrSave();
           delay(500);
@@ -29,9 +30,10 @@ void keyPad () {
         case 'F':
           qtrLoad();
           setLineFollow( manner );
-          game();
+          loop();
           break;
       }
+
       break;
     }
   }
