@@ -77,6 +77,7 @@ void getSword() {
   catchSorb();
   delay(500);
   up();
+  vibrate();
 }
 
 void putSword() {
@@ -90,7 +91,27 @@ void ramp() {
   forward();
   setEncoderPID('F');
 
-  while ( (dval[5] && dval[6] && dval[11] && dval[12])  ) {encoderPID();}
+  while ( (dval[5] && dval[6] && dval[11] && dval[12])  ) {
+    encoderPID();
+  }
   brake('B');
+
+}
+
+
+void pushButton() {
+  encoderMove(-190);
+  turnAngle(180);
+  leftCount = rightCount = 0;
+  ontoLine(200);
+  brake('B');
+  delay(500);
+  encoderMove(-650);
+}
+
+
+
+void roboVibrate() {
+
 
 }

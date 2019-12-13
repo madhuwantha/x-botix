@@ -18,8 +18,8 @@ void setLineFollow(char manner)
 
     case 'S'://Slow
       Kp = 0.089;
-      Kd = 1.2;
-      Ki = 0.009;
+      Kd = 0.9;
+      Ki = 0.0009;
       minSpeed = 0;
       baseSpeed = 130;
       maxSpeed = 150;
@@ -105,7 +105,7 @@ bool isLine() {
 void lineFollow()
 {
   uint16_t position = qtr.readLineBlack(sensorValues);
-  int error = position - 7000;
+  int error = position - 7500;
   Serial.print(  error );
   Serial.print(  "     " );
 

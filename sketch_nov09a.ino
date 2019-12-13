@@ -100,10 +100,41 @@ void setup() {
 } //end setup
 
 void loop() {
-  firstRound();
-//  onToDashLine();
-//  inDashLine();
-//  centerAtJunction(T);
-//  turnAngle(-90); 
+  getSword();
+  turnAngle(180);
+  ontoL(1);
+  centerAtJunction(L);
+  turnAngle(180);
+
+  setLineFollow('S');
+  while (1)
+  {
+    qtrRead();
+    if (dval[5] && dval[6] && dval[11] && dval[12])      //16-qtr - 3
+    {
+      if (1) brake('B');
+      doubleLight();
+      break;
+    }
+    lineFollow();
+  }
+  setLineFollow(manner);
+  brakeTime = 20;
+  encoderMove( -40 );
+  brakeTime = 50;
+  baseToPut();
+  delay(500);
+  baseServoRotate( 15 );
+  rightCatchServo.write( 66 );
+  leftCatchServo.write( 109 );
+  encoderMove(10);
+  encoderMove(-10);
+  ServoIntiate();
+  
+  //firstRound();
+  //  onToDashLine();
+  //  inDashLine();
+  //  centerAtJunction(T);
+  //  turnAngle(-90);
   delay(1000000000000000000);
 }

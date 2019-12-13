@@ -79,27 +79,24 @@ void firstRound() {
     turnAngle(-90); // before the dash liine
     onToDashLine();
     inDashLine();
-
     centerAtJunction(T);
     turnAngle(-90);
     ontoBreakPoint(1);
-    while(1){}
-
-    encoderMove( 400 );
-    turnAngle(180);
     pushButton(); // push button
-    ontoL(0);
+    ontoL(1);
     centerAtJunction(L);
-    ontoL(0);
+    ontoL(1);
     centerAtJunction(L);
-    ontoT(0); // before the ramp
+    ontoT(1); // before the ramp
     centerAtJunction(T);
-    ontoT(0); // after the ramp
+    ontoT(1); // after the ramp
     centerAtJunction(T);
-    ontoL(0);
+    ontoL(1);
     centerAtJunction(L);
     turnAngle(90);
     onToMesh( );
+
+    while(1) {}
     mesh(); // mesh
     ontoL(0);
     centerAtJunction(L);
@@ -117,6 +114,7 @@ void firstRound() {
     centerAtJunction(L);
     turnAngle(90);
     onToMesh( );
+
     goHome(); // shotest path
     ontoL(0);
     centerAtJunction(L);

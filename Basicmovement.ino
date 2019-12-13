@@ -160,10 +160,7 @@ void inDashLine() {
   brake('B');
 }
 
-void pushButton() {
-  encoderMove( -500 );
-  setLineFollow(manner);
-}
+
 
 void onToMesh() {
   setLineFollow(manner);
@@ -258,6 +255,9 @@ void turnAngle(int angle)   //change - 7    encoder counts for turns
   leftCount = 0;
   rightCount = 0;
 }
+
+
+
 
 //===================================================================
 
