@@ -22,7 +22,15 @@ void setLineFollow(char manner)
       Ki = 0.009;
       minSpeed = 0;
       baseSpeed = 130;
-      maxSpeed = 170;
+      maxSpeed = 150;
+      break;
+    case 'D'://Moderate
+      Kp = 0.895555;
+      Kd = 2.025555;
+      Ki = 0.00991111;
+      minSpeed = 0;
+      baseSpeed = 130;
+      maxSpeed = 140;
       break;
 
     case 'M'://Moderate
@@ -45,7 +53,7 @@ void setLineFollow(char manner)
     case 'F'://Fast
       Kp = 0.1555;
       Kd = 0.8555599;
-      Ki = 0.000000001;
+      Ki = 0.0000000015555;
       minSpeed = 0;
       baseSpeed = 200;
       maxSpeed = 230;
@@ -80,6 +88,17 @@ void setLineFollow(char manner)
   }
 }
 
+bool isLine() {
+  qtrRead();
+  if ( dval[0] || dval[1] || dval[2] || dval[3] || dval[4] || dval[5] || dval[6] || 
+  dval[7] || dval[8] || dval[9] || dval[10] || dval[11] || dval[12] || dval[13] || dval[14] || dval[15] )
+  {
+    return 1;
+  } else {
+    return 0;
+  }
+}
+
 
 //Line Following : PID Algorithm -------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -87,23 +106,23 @@ void lineFollow()
 {
   uint16_t position = qtr.readLineBlack(sensorValues);
   int error = position - 7000;
-    Serial.print(  error );
-    Serial.print(  "     " );
+  Serial.print(  error );
+  Serial.print(  "     " );
 
   integral = integral + error;
 
   int controlSpeed = Kp * error + Kd * (error - lastError) + Ki * integral;
-    //Serial.print(  controlSpeed );
-    Serial.print(  "     " );
+  //Serial.print(  controlSpeed );
+  Serial.print(  "     " );
   lastError = error;
 
   byte rightMotorSpeed = constrain((baseSpeed - controlSpeed), minSpeed, maxSpeed);
   byte leftMotorSpeed = constrain((baseSpeed +   controlSpeed), minSpeed, maxSpeed);
 
-    Serial.print(  leftMotorSpeed );
-    Serial.print(  "   " );
-    Serial.println(rightMotorSpeed   );
- motorSpeed(leftMotorSpeed, rightMotorSpeed);
+  Serial.print(  leftMotorSpeed );
+  Serial.print(  "   " );
+  Serial.println(rightMotorSpeed   );
+  motorSpeed(leftMotorSpeed, rightMotorSpeed);
 }
 
 //=====================================================================================================================================================================================
@@ -126,5 +145,5 @@ void lineFollowInMash()
   Serial.print(  "   " );
   Serial.println(  leftMotorSpeed );
 
-   motorSpeed(leftMotorSpeed, rightMotorSpeed);
+  motorSpeed(leftMotorSpeed, rightMotorSpeed);
 }

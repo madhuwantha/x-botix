@@ -29,15 +29,12 @@ void encoderMove(int count)
 
   if (count > 0) {
     forward();
-    setEncoderPID('M');
+    setEncoderPID('F');
   }
   else {
     backward();
     setEncoderPID('B');
   }
-
-
-
   while (leftCount <= abs(count) && rightCount <= abs(count)) encoderPID();
   if (count > 0) brake('B');
   else brake( 'F' );
@@ -146,10 +143,21 @@ void onToDashLine() {
 }
 
 void inDashLine() {
-  setLineFollow('S');
-  setEncoderPID('S');
 
+  while (1) {
+    if (isLine()) {
+      setLineFollow( 'D' );
+      lineFollow();
+    } else {
+      setEncoderPID('S');
+      encoderPID();
+    }
+    if (dval[5] && dval[6] && dval[11] && dval[12]) {
+      break;
+    }
+  }
   setLineFollow(manner);
+  brake('B');
 }
 
 void pushButton() {
@@ -181,21 +189,21 @@ void turnAngle(int angle)   //change - 7    encoder counts for turns
       setEncoderPID('X');
       leftTurn();
       countStart();
-      while (leftCount < 70 && rightCount < 70) encoderPID();
+      while (leftCount < 100 && rightCount < 100) encoderPID();
       setEncoderPID('F');
       leftTurn();
       countStart();
-      while (leftCount < 70 && rightCount < 70) encoderPID();
+      while (leftCount < 100 && rightCount <100) encoderPID();
       break;
     case 90: //clockwise 90 degree
       setEncoderPID('X');
       rightTurn();
       countStart();
-      while (leftCount < 70 && rightCount < 70) encoderPID();
+      while (leftCount < 100 && rightCount < 100) encoderPID();
       setEncoderPID('F');
       rightTurn();
       countStart();
-      while (leftCount < 70 && rightCount < 70) encoderPID();
+      while (leftCount < 100 && rightCount < 100) encoderPID();
       break;
 
     case 180: //clockwise 90 degree, total count 1420
@@ -210,7 +218,7 @@ void turnAngle(int angle)   //change - 7    encoder counts for turns
       break;
   }
 
-  setEncoderPID('S');
+  setEncoderPID('E');
   switch (angle)
   {
     case -90:

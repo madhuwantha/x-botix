@@ -29,9 +29,10 @@ void keyPad () {
           break;
         case 'F':
           qtrLoad();
+          setEncoderPID('F');
           setLineFollow( manner );
           loop();
-          break;
+          break;  
       }
 
       break;

@@ -19,33 +19,34 @@ void twoColor(Adafruit_TCS34725softi2c sensorN, Adafruit_TCS34725softi2c sensorO
 
   if (redN > greenN && redN > blueN) {
     leftLight(  ); light('R');
-    color[0] = "R";
+    color[0] = 'R';
     /// Serial.println("LEFT COLOR == REDn");
   }
   else if (greenN > redN && greenN > blueN) {
     leftLight(  ); light('G');
-    color[0] = "G";
+    color[0] = 'G';
     //Serial.println("LEFT COLOR == GREENn");
   }
   else if (blueN > greenN && blueN > redN) {
     leftLight(  ); light('B');
-    color[0] = "B";
+    color[0] = 'B';
     //Serial.println("LEFT COLOR == BLUEn");
   }
 
+  delay(1000);
   if (redO > greenO && redO > blueO) {
     rightLight(  ); light('R');
-    color[1] = "R";
+    color[1] = 'R';
     //Serial.println("\t\t\tRIGHT COLOR == REDo");
   }
   else if (greenO > redO && greenO > blueO) {
     rightLight(  ); light('G');
-    color[1] = "G";
+    color[1] = 'G';
     //Serial.println("\t\t\tRIGHT COLOR == GREENo");
   }
   else if (blueO > greenO && blueO > redO) {
     rightLight(  ); light('B');
-    color[1] = "B";
+    color[1] = 'B';
     //Serial.println("\t\t\tRIGHT COLOR == BLUEo");
   }
 
@@ -78,6 +79,7 @@ void twoColor(Adafruit_TCS34725softi2c sensorN, Adafruit_TCS34725softi2c sensorO
     colorAreaC[2] = color[0];
     colorAreaC[3] = color[1];
   }
+  delay(1000);
   light('O');
 }
 
@@ -95,17 +97,17 @@ char oneColor(Adafruit_TCS34725softi2c sensorN) {
   sensorN.setInterrupt(true);
 
   if (redN > greenN && redN > blueN) {
-    colorAreaA = "R";
+    colorAreaA = 'R';
     light('R');
     //Serial.println("LEFT COLOR == REDn");
   }
   else if (greenN > redN && greenN > blueN) {
-    colorAreaA = "G";
+    colorAreaA = 'G';
     light('G');
     //Serial.println("LEFT COLOR == GREENn");
   }
   else if (blueN > greenN && blueN > redN) {
-    colorAreaA = "B";
+    colorAreaA = 'B';
     light('B');
     //Serial.println("LEFT COLOR == BLUEn");
   }

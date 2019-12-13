@@ -18,9 +18,9 @@ void setEncoderPID(char manner)
       Kp = 1;
       Kd = 10;
       //Ki = ;
-      minSpeed = 30;
-      baseSpeed = 50;
-      maxSpeed = 70;
+      minSpeed = 100;
+      baseSpeed = 150;
+      maxSpeed = 180;
       break;
 
     case 'S'://Slow
@@ -44,7 +44,7 @@ void setEncoderPID(char manner)
 
     case 'F'://Fast
       Kp = 10;
-      Kd = 50;
+      Kd = 100;
       //Ki = ;
       minSpeed = 150;
       baseSpeed = 200;
@@ -64,8 +64,8 @@ void setEncoderPID(char manner)
       Kd = 50;
       //Ki = ;
       minSpeed = 100;
-      baseSpeed = 155;
-      maxSpeed = 200;
+      baseSpeed = 185;
+      maxSpeed = 220;
   }
 
 }
@@ -78,7 +78,7 @@ void encoderPID()
   lastError = error;
 
   int rightMotorSpeed = constrain((baseSpeed + controlSpeed), minSpeed, maxSpeed);
-  int leftMotorSpeed = constrain((baseSpeed - controlSpeed), minSpeed, maxSpeed);
+  int leftMotorSpeed = constrain((baseSpeed - 65 - controlSpeed), minSpeed, maxSpeed);
 
   motorSpeed(leftMotorSpeed, rightMotorSpeed);
 }

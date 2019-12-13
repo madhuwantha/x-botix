@@ -33,7 +33,7 @@ int L = 250;
 #define rightMotorBackward 50//52
 #define rightMotorPWM 4 //PWM controls
 #define leftMotorPWM 5//9
-#define brakeTime 50
+#define brakeTime 40
 
 //Encorders---------------------------------------------------
 volatile unsigned long leftCount = 0, rightCount = 0;

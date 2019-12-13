@@ -39,14 +39,14 @@ void rightCatchServoRotate(int angle) {
   }
 }
 void catchSorb() {
-  for ( int i = 0; i < 40; i++ ) {
+  for ( int i = 0; i < 55; i++ ) {
     rightCatchServo.write( 120 - i);
     leftCatchServo.write( 60 + i );
     delay(20);
   }
 }
 void baseToCatch() {
-  baseServoRotate(02);
+  baseServoRotate(05);
 }
 void up() {
   baseServoRotate(100);

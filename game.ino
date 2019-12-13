@@ -64,11 +64,11 @@ void firstRound() {
     ontoT(1);
     enterSquare();
     IndicateinC();
-    delay(1000);
+    delay(10000);
     light( 'O' );
     encoderbackTurn();
     //leaveSquare();
-    
+
     ontoT(1); // crose line after C
     centerAtJunction(T);
     ontoT(1);  // 2nd crose line after C
@@ -78,10 +78,13 @@ void firstRound() {
     centerAtJunction(L);
     turnAngle(-90); // before the dash liine
     onToDashLine();
-    while( 1 ){}
-    
+    inDashLine();
+
     centerAtJunction(T);
     turnAngle(-90);
+    ontoBreakPoint(1);
+    while(1){}
+
     encoderMove( 400 );
     turnAngle(180);
     pushButton(); // push button

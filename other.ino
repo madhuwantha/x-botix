@@ -70,6 +70,8 @@ void blue() {
 
 
 void getSword() {
+  ontoBreakPoint(1);
+  encoderMove( -160 );
   baseToCatch();
   delay(500);
   catchSorb();
@@ -78,5 +80,17 @@ void getSword() {
 }
 
 void putSword() {
+
+}
+
+void ramp() {
+  leftCount = 0;
+  rightCount = 0;
+
+  forward();
+  setEncoderPID('F');
+
+  while ( (dval[5] && dval[6] && dval[11] && dval[12])  ) {encoderPID();}
+  brake('B');
 
 }
