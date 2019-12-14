@@ -14,13 +14,13 @@ void setEncoderPID(char manner)
 
   switch (manner)
   {
-    case 'E'://Xtremely Slow
+    case 'E':
       Kp = 1;
       Kd = 10;
       //Ki = ;
-      minSpeed = 100;
-      baseSpeed = 150;
-      maxSpeed = 180;
+      minSpeed = 150;
+      baseSpeed = 180;
+      maxSpeed = 210;
       break;
 
     case 'S'://Slow
@@ -49,6 +49,14 @@ void setEncoderPID(char manner)
       minSpeed = 150;
       baseSpeed = 200;
       maxSpeed = 255;
+      break;
+    case 'R'://Fast
+      Kp = 10;
+      Kd = 100;
+      //Ki = ;
+      minSpeed = 140;
+      baseSpeed = 170;
+      maxSpeed = 290;
       break;
 
     case 'X'://Xtremely Fast

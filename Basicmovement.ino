@@ -58,7 +58,7 @@ void leaveSquare()
 
 void enterSquare()
 {
-  encoderMove(100);   //change - 6    center for end squre
+  encoderMove(350);   //change - 6    center for end squre
   brake();
 }
 
@@ -76,6 +76,65 @@ void ontoT(bool BRAKE)
       break;
     }
     lineFollow();
+  }
+}
+
+void skipTurn()
+{
+  setLineFollow(manner);
+  while (1)
+  {
+    qtrRead();
+    if ( (dval[2] && dval[3]) || (dval[10] && dval[11]) )      //16-qtr - 5
+    {
+      break;
+    }
+    lineFollow();
+  }
+
+  skip(200);    //change - 2  first cell of grid
+
+}
+
+
+void turn(char input) //Explicit turnings
+{
+  setLineFollow(manner);
+  switch (input)
+  {
+    case 'L': //Go forward and Turn Left
+      while (1)
+      {
+        qtrRead();
+        if (dval[2] && dval[3])      //16-qtr - 6
+        {
+          encoderMove(junctionCount);
+          turnAngle(-90);
+          break;
+        }
+        else lineFollow();
+      }
+      break;
+
+    case 'R': //Go forward and turn right
+      while (1)
+      {
+        qtrRead();
+        if (dval[12] && dval[13])      //16-qtr - 2
+        {
+          encoderMove(junctionCount);
+          turnAngle(90);
+          break;
+        }
+        else lineFollow();
+      }
+      break;
+
+    case 'B': //turn back
+      turnAngle(180);
+      //ontoLine(100);
+      brake();
+      break;
   }
 }
 
@@ -127,6 +186,17 @@ void ontoLine(int val)
   brake('B');
 }
 
+void skip(int val)
+{
+  setLineFollow(manner);
+  leftCount = 0;
+  rightCount = 0;
+  while (leftCount <= val && rightCount <= val) lineFollow();
+  leftCount = 0;
+  rightCount = 0;
+  //  brake('B');
+}
+
 void onToDashLine() {
   setLineFollow('F');
   while (1) {
@@ -165,6 +235,7 @@ void inDashLine() {
 void onToMesh() {
   setLineFollow(manner);
   while (1) {
+    qtrRead();
     if ( dval[0] && dval[1] && dval[14] && dval[15] && !( dval[7] || dval[8]  ) ) {
       break;
     }
@@ -186,28 +257,28 @@ void turnAngle(int angle)   //change - 7    encoder counts for turns
       setEncoderPID('X');
       leftTurn();
       countStart();
-      while (leftCount < 100 && rightCount < 100) encoderPID();
-      setEncoderPID('F');
-      leftTurn();
-      countStart();
-      while (leftCount < 100 && rightCount <100) encoderPID();
+      while (leftCount < 200 && rightCount < 200) encoderPID();
+      //      setEncoderPID('F');
+      //      leftTurn();
+      //      countStart();
+      //      while (leftCount < 100 && rightCount <100) encoderPID();
       break;
     case 90: //clockwise 90 degree
       setEncoderPID('X');
       rightTurn();
       countStart();
-      while (leftCount < 100 && rightCount < 100) encoderPID();
-      setEncoderPID('F');
-      rightTurn();
-      countStart();
-      while (leftCount < 100 && rightCount < 100) encoderPID();
+      while (leftCount < 200 && rightCount < 200) encoderPID();
+      //      setEncoderPID('F');
+      //      rightTurn();
+      //      countStart();
+      //      while (leftCount < 100 && rightCount < 100) encoderPID();
       break;
 
     case 180: //clockwise 90 degree, total count 1420
       setEncoderPID('X');
       rightTurn();
       countStart();
-      while (leftCount < 220 && rightCount < 220) encoderPID();
+      while (leftCount < 320 && rightCount < 320) encoderPID();
       setEncoderPID('F');
       rightTurn();
       countStart();
@@ -215,7 +286,7 @@ void turnAngle(int angle)   //change - 7    encoder counts for turns
       break;
   }
 
-  setEncoderPID('E');
+  setEncoderPID ('E');
   switch (angle)
   {
     case -90:
@@ -231,7 +302,7 @@ void turnAngle(int angle)   //change - 7    encoder counts for turns
   while (1)
   {
     qtrRead();
-    if ( ( dval[6] && dval[7] && dval[8] ) || ( dval[7] && dval[8] && dval[9] ) )      //16-qtr - 7
+    if (  dval[7] || dval[8]  )      //16-qtr - 7
     {
       switch (angle)
       {

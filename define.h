@@ -22,10 +22,10 @@ int rightMotorSpeed;
 int leftMotorSpeed;
 
 char manner;
-#define junctionCount 550 //encoder counts needed to bring the robot at center of juction
+#define junctionCount 210 //encoder counts needed to bring the robot at center of juction
 #define skipJunction  120
-int T = 250;
-int L = 250;
+int T = 210;
+int L = 230;
 //Mototrs -------------------------------------------
 #define leftMotorForward 53//48  //motor directions
 #define leftMotorBackward 52//46
@@ -92,6 +92,9 @@ byte colPins[COLS] = {33,35,37,39,41,43}; //connect to the column pinouts of the
 Keypad customKeypad = Keypad( makeKeymap(hexaKeys), rowPins, colPins, ROWS, COLS); 
 char customKey;
 
+
+//metal detector
+#define metalPin 32
 
 
 // ******************************Mesh*********************************************//

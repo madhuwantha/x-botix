@@ -81,21 +81,45 @@ void getSword() {
 }
 
 void putSword() {
-
+  setLineFollow('S');
+  // on to break point
+  while (1)
+  {
+    qtrRead();
+    if (dval[5] && dval[6] && dval[11] && dval[12])      //16-qtr - 3
+    {
+      if (1) brake('B');
+      doubleLight();
+      break;
+    }
+    lineFollow();
+  }
+  setLineFollow(manner);
+  brakeTime = 20;
+  encoderMove( -40 );
+  brakeTime = 50;
+  baseToPut();
+  delay(500);
+  baseServoRotate( 15 );
+  rightCatchServo.write( 66 );
+  leftCatchServo.write( 109 );
+  encoderMove(10);
+  encoderMove(-10);
+  ServoIntiate();
 }
 
 void ramp() {
   leftCount = 0;
   rightCount = 0;
-
-  forward();
+  ontoBreakPoint(1);
+  delay(500);
   setEncoderPID('F');
 
-  while ( (dval[5] && dval[6] && dval[11] && dval[12])  ) {
+  while ( leftCount < 1100 &&  rightCount < 1100 ) {
     encoderPID();
   }
   brake('B');
-
+  ontoLine(150);
 }
 
 
@@ -113,5 +137,20 @@ void pushButton() {
 
 void roboVibrate() {
 
+}
 
+
+
+bool isMetal() {
+  int count_ = 0;
+  for ( int i = 0; i < 100 ; i++ ) {
+    int a = digitalRead(metalPin);
+    count_ = count_ + a;
+  }
+
+  if ( count_ >= 60 ) {
+    return 1;
+  } else {
+    return 0;
+  }
 }
