@@ -19,8 +19,9 @@ void encoderbackTurn() {
   while ( leftCount < 650 && rightCount < 650 ) {
     encoderPID();
   }
-  brake( 'L' );
   setLineFollow( manner );
+  stoP();
+  brake( 'L' );
 }
 void encoderMove(int count)
 {
@@ -39,6 +40,7 @@ void encoderMove(int count)
   if (count > 0) brake('B');
   else brake( 'F' );
   setLineFollow( manner );
+  stoP();
 }
 
 void leaveSquare()
@@ -83,12 +85,20 @@ void skipTurn()
   setLineFollow(manner);
   while (1)
   {
-    qtrRead();
+    if (lineMode == 0 ) {
+      qtrReadMesh();
+    } else {
+      qtrRead();
+    }
     if ( (dval[2] && dval[3]) || (dval[10] && dval[11]) )      //16-qtr - 5
     {
       break;
     }
-    lineFollow();
+    if (lineMode == 0 ) {
+      lineFollowInMash();
+    } else {
+      lineFollow();
+    }
   }
 
   skip(200);    //change - 2  first cell of grid
@@ -210,7 +220,13 @@ void skip(int val)
   setLineFollow(manner);
   leftCount = 0;
   rightCount = 0;
-  while (leftCount <= val && rightCount <= val) lineFollow();
+  while (leftCount <= val && rightCount <= val) {
+    if (lineMode == 0 ) {
+      lineFollowInMash();
+    } else {
+      lineFollow();
+    }
+  }
   leftCount = 0;
   rightCount = 0;
   //  brake('B');
@@ -255,6 +271,18 @@ void onToMesh() {
   setLineFollow(manner);
   while (1) {
     qtrRead();
+    if ( dval[0] && dval[1] && dval[14] && dval[15] && !( dval[7] || dval[8]  ) ) {
+      break;
+    }
+    lineFollow();
+  }
+  brake('B');
+}
+
+void onToBlack() {
+  setLineFollow(manner);
+  while (1) {
+    qtrReadMesh();
     if ( dval[0] && dval[1] && dval[14] && dval[15] && !( dval[7] || dval[8]  ) ) {
       break;
     }
@@ -323,7 +351,7 @@ void turnAngle(int angle)   //change - 7    encoder counts for turns
       qtrRead();
     }
     if (  dval[7] || dval[8]  )      //16-qtr - 7
-    {      
+    {
       switch (angle)
       {
         case -90:

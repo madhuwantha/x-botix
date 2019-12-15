@@ -85,13 +85,21 @@ void setLineFollow(char manner)
       baseSpeed = 140;
       maxSpeed = 170;
       break;
+    case 'N'://backword  
+      Kp = 0.089;
+      Kd = 1.2;
+      Ki = 0.00000000000000000009;
+      minSpeed = 0;
+      baseSpeed = 160;
+      maxSpeed = 200;
+      break;
   }
 }
 
 bool isLine() {
   qtrRead();
-  if ( dval[0] || dval[1] || dval[2] || dval[3] || dval[4] || dval[5] || dval[6] || 
-  dval[7] || dval[8] || dval[9] || dval[10] || dval[11] || dval[12] || dval[13] || dval[14] || dval[15] )
+  if ( dval[0] || dval[1] || dval[2] || dval[3] || dval[4] || dval[5] || dval[6] ||
+       dval[7] || dval[8] || dval[9] || dval[10] || dval[11] || dval[12] || dval[13] || dval[14] || dval[15] )
   {
     return 1;
   } else {
@@ -141,9 +149,9 @@ void lineFollowInMash()
   byte rightMotorSpeed = constrain((baseSpeed - controlSpeed), minSpeed, maxSpeed);
   byte leftMotorSpeed = constrain((baseSpeed +   controlSpeed), minSpeed, maxSpeed);
 
-//  Serial.print(  rightMotorSpeed );
-//  Serial.print(  "   " );
-//  Serial.println(  leftMotorSpeed );
+  //  Serial.print(  rightMotorSpeed );
+  //  Serial.print(  "   " );
+  //  Serial.println(  leftMotorSpeed );
 
   motorSpeed(leftMotorSpeed, rightMotorSpeed);
 }

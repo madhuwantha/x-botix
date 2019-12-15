@@ -22,6 +22,7 @@ int rightMotorSpeed;
 int leftMotorSpeed;
 
 char manner;
+char temp;
 #define junctionCount 210 //encoder counts needed to bring the robot at center of juction
 #define skipJunction  120
 int T = 210;
@@ -34,6 +35,7 @@ int L = 230;
 #define rightMotorPWM 4 //PWM controls
 #define leftMotorPWM 5//9
 int brakeTime = 50;
+int a = 0;
 
 //Encorders---------------------------------------------------
 volatile unsigned long leftCount = 0, rightCount = 0;
@@ -102,7 +104,7 @@ char junction;
 
 int status = 0;
 int mode = 0;
-bool a=0;
+bool er=0;
 
 # define STOPPED 0
 # define FOLLOWING_LINE 1

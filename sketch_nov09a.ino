@@ -100,6 +100,14 @@ void setup() {
 } //end setup
 
 void loop() {
+  //for white line
+  //lineMode = 0;
+//
+//  skipTurn();
+//
+//  turn( 'R' );
+
+
 
   //onToMesh( );
   //encoderMove(100);
@@ -132,18 +140,15 @@ void loop() {
   //turnAngle(180);
   //  onToDashLine();
   //  inDashLine();
-  //  firstRound();
+  firstRound();
 
-      lineMzaSolve();
-      encoderMove(-100);
-      lineMode = 0;
-      turnAngle(180);
-      goHome();
+  //lineMzaSolve();
 
 
 
 
-  //    getSword();
+
+
   //  onToDashLine();
   //  inDashLine();
   //  centerAtJunction(T);

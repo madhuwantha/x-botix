@@ -2,11 +2,19 @@
 
 void goHome() {
   lineMode = 0;
+
+//  path[0] = 'R';
+//  path[1] = 'L';
+//  path[2] = 'S';
+//  path[3] = 'R';
+//  path[4] = 'L';
+//  pathLength = 5;
   int i = pathLength - 1;
   while (i >= 0) {
-    char j = path[pathLength];
+    char j = path[i];
     switch (j) {
       case 'L':
+        red();
         //turn right
         turn('R');
         break;
@@ -23,7 +31,7 @@ void goHome() {
     }
     i--;
   }
-  lineMode = 0;
+  lineMode = 1;
 }
 
 
@@ -31,7 +39,7 @@ void goHome() {
 
 void lineMzaSolve() {
   lineMode = 0;
-  setLineFollow( manner );
+  setLineFollow( 'V' );
   while (!status) {
     checkJunctionMaze();
     light('O');
@@ -61,7 +69,7 @@ void lineMzaSolve() {
       case RIGHT_TURN:
         brake('B');
         rightLight();
-        checkJunctionMaze();
+       // checkJunctionMaze();
         centerAtJunction(L);
         turnAngle(90);
         recIntersection('R');
@@ -92,9 +100,9 @@ void lineMzaSolve() {
       case END_MAZE:
         brake('B');
         checkJunctionMaze();
-//        if ( mode != END_MAZE ) {
-//          break;
-//        }
+        //        if ( mode != END_MAZE ) {
+        //          break;
+        //        }
         light('R');
         mazeEnd();
         break;

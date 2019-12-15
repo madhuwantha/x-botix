@@ -7,8 +7,8 @@ void rightColorServo( int angle ) {  // 60 - 120
 }
 
 void setColorServo() {
-  leftColorServo( 125 );
-  rightColorServo( 125 );
+  leftColorServo( 135 );
+  rightColorServo( 135 );
 }
 
 void colorServoIntiate() {

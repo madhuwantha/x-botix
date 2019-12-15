@@ -1,8 +1,8 @@
-//void beep() {
-//  digitalWrite(leftMotorForward, LOW);
-//  delay(100);
-//  digitalWrite(leftMotorForward, HIGH);
-//}
+void beep() {
+  digitalWrite(22, HIGH);
+  delay(100);
+  digitalWrite(22, LOW);
+}
 
 
 //metal detector
@@ -75,7 +75,7 @@ void blue() {
 
 
 void getSword() {
-  
+
   turn('L');
   turn('L');
   setLineFollow('S');
@@ -133,12 +133,21 @@ void ramp() {
   ontoBreakPoint(1);
   delay(500);
   setEncoderPID('F');
-
-  while ( leftCount < 1100 &&  rightCount < 1100 ) {
+  er = 20;
+  while ( leftCount < 500 &&  rightCount < 500 ) {
     encoderPID();
   }
   brake('B');
-  ontoLine(150);
+  delay(2000);
+  leftCount = 0;
+  rightCount = 0;
+  setEncoderPID('F');
+  er = 20;
+  while ( leftCount < 900 &&  rightCount < 900 ) {
+    encoderPID();
+  }
+  brake('B');
+  ontoLine(100);
 }
 
 
@@ -146,7 +155,7 @@ void pushButton() {
   encoderMove(-190);
   turnAngle(180);
   leftCount = rightCount = 0;
-  ontoLine(200);
+  ontoLine(250);
   brake('B');
   delay(500);
   encoderMove(-650);

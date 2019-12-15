@@ -144,12 +144,22 @@ void IndicateinC() {
   }
 
   switch (colorCount) {
+    case 1:
+      beep();
     case 2:
       analogWrite( 42, 150 );
+      beep();
+      delay(200);
+      beep();
       break;
     case 3:
       analogWrite( 42, 150 );
       analogWrite( 40, 150 );
+      beep();
+      delay(200);
+      beep();
+      delay(200);
+      beep();
       break;
   }
 

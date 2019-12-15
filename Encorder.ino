@@ -14,6 +14,14 @@ void setEncoderPID(char manner)
 
   switch (manner)
   {
+    case 'W':
+      Kp = 1;
+      Kd = 10;
+      //Ki = ;
+      minSpeed = 70;
+      baseSpeed = 180;
+      maxSpeed = 190;
+      break;
     case 'E':
       Kp = 1;
       Kd = 10;
@@ -86,7 +94,7 @@ void encoderPID()
   lastError = error;
 
   int rightMotorSpeed = constrain((baseSpeed + controlSpeed), minSpeed, maxSpeed);
-  int leftMotorSpeed = constrain((baseSpeed - 65 - controlSpeed), minSpeed, maxSpeed);
+  int leftMotorSpeed = constrain((baseSpeed - 65 - a - controlSpeed), minSpeed, maxSpeed);
 
   motorSpeed(leftMotorSpeed, rightMotorSpeed);
 }

@@ -6,6 +6,7 @@ void game() {
 
 void firstRound() {
   while ( 1 ) {
+   
     leaveSquare(); // start
     turn('R'); //to A
     ontoBreakPoint(1); // A
@@ -59,17 +60,15 @@ void firstRound() {
 
     IndicateinC();
 
-    delay(3000);
-
     light( 'O' );
-
+ 
     //turnAngle(180);
     encoderbackTurn();
-    
+
     leaveSquare();
 
     ontoLine(100);
-    
+ 
     skipTurn(); // crose line after C
 
     turn('R');
@@ -89,67 +88,52 @@ void firstRound() {
     pushButton(); // push button
 
     skipTurn();
-
+    
+    turn( 'R' );
+   
     skipTurn(); // before the ramp
-
+    
     ramp();
 
     turn('R');// after the ramp
-
+ 
     onToMesh( );
-    
+
     lineMzaSolve() ;// mesh
-    
-    ontoL(0);
-    centerAtJunction(L);
-    turnAngle(-90);
-    ontoL(0);
-    centerAtJunction(L);
-    turnAngle(-90);
-    ontoT(1); // in the room 1
+
+    lineMode = 1;
     getSword();
     turnAngle(180);
-    ontoT(0);
-    centerAtJunction(T);
-    turnAngle(90);
-    ontoL(0);
-    centerAtJunction(L);
-    turnAngle(90);
-    onToMesh( );
+    encoderMove( -300 );
+    turn('R');
+    turn('R');
+    onToMesh();
+    goHome();
+    onToBlack();
+    goHome();// shotest path
 
-    goHome(); // shotest path
-    ontoL(0);
-    centerAtJunction(L);
-    turnAngle(-90);
-    ontoT(0);
-    centerAtJunction(T);
-    ontoT(0);
-    centerAtJunction(T);
-    ontoL(0);
-    centerAtJunction(L);
-    turnAngle(-90);
-    ontoL(0);
+    turn('L');
+
+    ramp();
+
+    turn('L');
+
+    ontoL(1);
+
     centerAtJunction(L);
     switch (colorCount) {
       case 1:
-        ontoT(1);
         break;
       case 2:
         turnAngle(90);
-        ontoL(0);
-        centerAtJunction(L);
-        turnAngle(-90);
+        turn('L');
         break;
       case 3:
         turnAngle(90);
-        ontoL(0);
-        centerAtJunction(L);
-        ontoL(0);
-        centerAtJunction(L);
-        turnAngle(-90);
+        skipTurn();
+        turn( 'L' );
         break;
     }
-    ontoT(1);
     putSword();
   }
 }
