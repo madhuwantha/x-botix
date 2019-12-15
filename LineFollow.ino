@@ -18,8 +18,8 @@ void setLineFollow(char manner)
 
     case 'S'://Slow
       Kp = 0.089;
-      Kd = 0.9;
-      Ki = 0.0009;
+      Kd = 0.999;
+      Ki = 0.009;
       minSpeed = 0;
       baseSpeed = 130;
       maxSpeed = 150;
@@ -52,26 +52,26 @@ void setLineFollow(char manner)
 
     case 'F'://Fast
       Kp = 0.1555;
-      Kd = 0.8555599;
-      Ki = 0.0000000015555;
+      Kd = 2.80555599;
+      Ki = 0.0115555;
       minSpeed = 0;
       baseSpeed = 200;
       maxSpeed = 230;
       break;
 
     case 'V'://Very fast
-      Kp = 0.1;
-      Kd = 100;
-      Ki = 0.001;
+      Kp = 0.1555;
+      Kd = 1.80555599;
+      Ki = 0.0000000000115555;
       minSpeed = 0;
-      baseSpeed = 200;
+      baseSpeed = 230;
       maxSpeed = 245;
       break;
 
     case 'U'://Ultra fast
-      Kp = 0.089;
-      Kd = 1.2;
-      Ki = 0.009;
+      Kp = 0.1555;
+      Kd = 1.80555599;
+      Ki = 0.0000000000115555;
       minSpeed = 0;
       baseSpeed = 245;
       maxSpeed = 255;
@@ -138,12 +138,12 @@ void lineFollowInMash()
 
   lastError = error;
 
-  byte rightMotorSpeed = constrain((baseSpeed + controlSpeed), minSpeed, maxSpeed);
-  byte leftMotorSpeed = constrain((baseSpeed -   controlSpeed), minSpeed, maxSpeed);
+  byte rightMotorSpeed = constrain((baseSpeed - controlSpeed), minSpeed, maxSpeed);
+  byte leftMotorSpeed = constrain((baseSpeed +   controlSpeed), minSpeed, maxSpeed);
 
-  Serial.print(  rightMotorSpeed );
-  Serial.print(  "   " );
-  Serial.println(  leftMotorSpeed );
+//  Serial.print(  rightMotorSpeed );
+//  Serial.print(  "   " );
+//  Serial.println(  leftMotorSpeed );
 
   motorSpeed(leftMotorSpeed, rightMotorSpeed);
 }

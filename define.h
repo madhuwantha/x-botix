@@ -99,3 +99,26 @@ char customKey;
 
 // ******************************Mesh*********************************************//
 char junction;
+
+int status = 0;
+int mode = 0;
+bool a=0;
+
+# define STOPPED 0
+# define FOLLOWING_LINE 1
+# define NO_LINE 2
+# define CONT_LINE 3
+# define POS_LINE 4
+# define RIGHT_TURN 5
+# define LEFT_TURN 6
+#define END_MAZE 7
+
+char junctionMaze;
+
+char path[100] = " ";
+unsigned char pathLength = 0; // The path length
+int pathIndex = 0; // used to reach an specific array element.
+
+
+// ******************************Line mode*********************************************//
+bool lineMode = 0;

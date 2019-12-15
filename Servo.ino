@@ -46,12 +46,20 @@ void catchSorb() {
   }
 }
 
+void releseSorb() {
+  for ( int i = 0; i < 55; i++ ) {
+    rightCatchServo.write( 60  + i);
+    leftCatchServo.write( 115-i );
+    delay(20);
+  }
+}
+
 void vibrate() {
   rightCatchServo.write( 63);
   leftCatchServo.write( 112 );
 }
 void baseToCatch() {
-  baseServoRotate(05);
+  baseServoRotate(07);
 }
 void  baseToPut() {
   for ( int i = 101; i > 35; i-- ) {

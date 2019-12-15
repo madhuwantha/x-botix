@@ -10,6 +10,11 @@
 //graw   - +
 //yellow - signal
 void light( char mode  ) {
+  analogWrite( 34, 0 );
+  analogWrite( 36, 0 );
+  analogWrite( 38, 0 );
+  analogWrite( 42, 0 );
+  analogWrite( 40, 0 );
   switch (mode) {
     case 'R':
       analogWrite( 34, 150 );
@@ -70,7 +75,12 @@ void blue() {
 
 
 void getSword() {
+
+  //  turn('L');
+  //  turn('L');
+  setLineFollow('S');
   ontoBreakPoint(1);
+  setLineFollow(manner);
   encoderMove( -160 );
   baseToCatch();
   delay(500);
@@ -88,23 +98,31 @@ void putSword() {
     qtrRead();
     if (dval[5] && dval[6] && dval[11] && dval[12])      //16-qtr - 3
     {
-      if (1) brake('B');
+      if (1) brake();
       doubleLight();
       break;
     }
     lineFollow();
   }
+  setEncoderPID('S');
+  while ( 1 ) {
+    qtrRead();
+    if ( !dval[7] && !dval[8]  ) {
+      brake();
+      break;
+    }
+    encoderPID();
+  }
   setLineFollow(manner);
-  brakeTime = 20;
+  brakeTime = 5;
   encoderMove( -40 );
   brakeTime = 50;
   baseToPut();
   delay(500);
-  baseServoRotate( 15 );
-  rightCatchServo.write( 66 );
-  leftCatchServo.write( 109 );
-  encoderMove(10);
-  encoderMove(-10);
+  baseServoRotate( 1 );
+  delay(500);
+  releseSorb();
+
   ServoIntiate();
 }
 

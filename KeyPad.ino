@@ -14,14 +14,17 @@ void keyPad () {
           break;
         case 'B':
           manner = 'F';
+          brakeTime = 20;
           keyPad ();
           break;
         case 'C':
           manner = 'V';
+          brakeTime = 30;
           keyPad ();
           break;
         case 'D':
           manner = 'U';
+          brakeTime=40;
           keyPad ();
           break;
         case 'E':

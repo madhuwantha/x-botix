@@ -38,6 +38,7 @@ void firstRound() {
 
     ontoBreakPoint(1);
     setColorServo();
+    delay(200);
     twoColor( tcsN, tcsO );//detect color B  2  twoColor( tcsN, tcsO );
     colorServoIntiate();
     encoderMove(-200);
@@ -62,8 +63,13 @@ void firstRound() {
 
     light( 'O' );
 
-    turnAngle(180);
+    //turnAngle(180);
+    encoderbackTurn();
+    
+    leaveSquare();
 
+    ontoLine(100);
+    
     skipTurn(); // crose line after C
 
     turn('R');
@@ -91,9 +97,8 @@ void firstRound() {
     turn('R');// after the ramp
 
     onToMesh( );
+    lineMzaSolve() ;// mesh
     
-    while(1){}  
-    mesh(); // mesh
     ontoL(0);
     centerAtJunction(L);
     turnAngle(-90);

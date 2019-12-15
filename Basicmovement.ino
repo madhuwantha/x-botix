@@ -13,7 +13,6 @@ void centerAtJunction(int val) {
   encoderMove( val );
 }
 void encoderbackTurn() {
-
   setEncoderPID('F');
   countStart();
   rightTurn();
@@ -21,6 +20,7 @@ void encoderbackTurn() {
     encoderPID();
   }
   brake( 'L' );
+  setLineFollow( manner );
 }
 void encoderMove(int count)
 {
@@ -38,13 +38,13 @@ void encoderMove(int count)
   while (leftCount <= abs(count) && rightCount <= abs(count)) encoderPID();
   if (count > 0) brake('B');
   else brake( 'F' );
-
+  setLineFollow( manner );
 }
 
 void leaveSquare()
 {
   //Leaving starting   zone --------------------------------
-  setEncoderPID('S');
+  setEncoderPID('F');
   forward();
   qtrRead();
   while ( dval[0] || dval[15])      //16-qtr - 1
@@ -53,7 +53,6 @@ void leaveSquare()
     qtrRead();
   }
   brake();
-  //ontoLine(100);
 }
 
 void enterSquare()
@@ -105,7 +104,11 @@ void turn(char input) //Explicit turnings
     case 'L': //Go forward and Turn Left
       while (1)
       {
-        qtrRead();
+        if (lineMode == 0 ) {
+          qtrReadMesh();
+        } else {
+          qtrRead();
+        }
         if (dval[2] && dval[3])      //16-qtr - 6
         {
           encoderMove(junctionCount);
@@ -119,7 +122,11 @@ void turn(char input) //Explicit turnings
     case 'R': //Go forward and turn right
       while (1)
       {
-        qtrRead();
+        if (lineMode == 0 ) {
+          qtrReadMesh();
+        } else {
+          qtrRead();
+        }
         if (dval[12] && dval[13])      //16-qtr - 2
         {
           encoderMove(junctionCount);
@@ -198,7 +205,7 @@ void skip(int val)
 }
 
 void onToDashLine() {
-  setLineFollow('F');
+  setLineFollow('U');
   while (1) {
     lineFollow();
     qtrRead();
@@ -257,7 +264,7 @@ void turnAngle(int angle)   //change - 7    encoder counts for turns
       setEncoderPID('X');
       leftTurn();
       countStart();
-      while (leftCount < 200 && rightCount < 200) encoderPID();
+      while (leftCount < 300 && rightCount < 300) encoderPID();
       //      setEncoderPID('F');
       //      leftTurn();
       //      countStart();
@@ -267,7 +274,7 @@ void turnAngle(int angle)   //change - 7    encoder counts for turns
       setEncoderPID('X');
       rightTurn();
       countStart();
-      while (leftCount < 200 && rightCount < 200) encoderPID();
+      while (leftCount < 300 && rightCount < 300) encoderPID();
       //      setEncoderPID('F');
       //      rightTurn();
       //      countStart();
@@ -278,11 +285,8 @@ void turnAngle(int angle)   //change - 7    encoder counts for turns
       setEncoderPID('X');
       rightTurn();
       countStart();
-      while (leftCount < 320 && rightCount < 320) encoderPID();
+      while (leftCount < 420 && rightCount < 420) encoderPID();
       setEncoderPID('F');
-      rightTurn();
-      countStart();
-      while (leftCount < 100 && rightCount < 100) encoderPID();
       break;
   }
 
@@ -302,6 +306,9 @@ void turnAngle(int angle)   //change - 7    encoder counts for turns
   while (1)
   {
     qtrRead();
+    if (lineMode == 1 ) {
+      qtrReadMesh();
+    }
     if (  dval[7] || dval[8]  )      //16-qtr - 7
     {
       switch (angle)
@@ -322,7 +329,7 @@ void turnAngle(int angle)   //change - 7    encoder counts for turns
   }
 
   //ontoLine(200);
-
+  setLineFollow( manner );
   leftCount = 0;
   rightCount = 0;
 }

@@ -101,7 +101,18 @@ void setup() {
 
 void loop() {
 
+  //  getSword();
+  //  turnAngle(180);
+  //  skipTurn();
+  //  ontoT(1);
+  //  putSword();
 
+
+  //  checkJunctionMaze();
+  //  Serial.println( mode );
+
+  //  onToDashLine();
+  //  checkQTR();
   //  ontoBreakPoint(1);
   //  encoderMove(200);
   //
@@ -114,9 +125,17 @@ void loop() {
   //  brake('B');
 
   //turnAngle(180);
+  //  onToDashLine();
+  //  inDashLine();
+//  firstRound();
+
+  lineMode = 1;
+  lineMzaSolve();
+  encoderMove(-100);
+  turnAngle(180);
   
   
-  firstRound();
+  //    getSword();
   //  onToDashLine();
   //  inDashLine();
   //  centerAtJunction(T);
