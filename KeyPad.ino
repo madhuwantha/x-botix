@@ -7,33 +7,44 @@ void keyPad () {
       //Serial.println(customKey);
       switch (customKey)
       {
-
         case 'A':
           qtrSave();
           delay(500);
           keyPad ();
           break;
-        case 'B':
+        case 'B': // fast
+          junctionCount = 210;
+          T = 210;
+          L = 210;
           manner = 'F';
           brakeTime = 20;
-          keyPad ();
+          keyPad();
           break;
-        case 'C':
+        case 'C': // verry fast
+          junctionCount = 210;
+          T = 210;
+          L = 210;
           manner = 'V';
           brakeTime = 30;
           keyPad ();
           break;
-        case 'D':
+        case 'D': // ultra fast
+          junctionCount = 210;
+          T = 210;
+          L = 210;
           manner = 'U';
           brakeTime = 40;
           keyPad ();
           break;
-        case 'E':
+        case 'E': // normal
+          junctionCount = 210;
+          T = 210;
+          L = 210;
           manner = 'N';
           brakeTime = 40;
           keyPad ();
           break;
-        case 'F':
+        case 'F': // start
           temp  = manner;
           qtrLoad();
           setEncoderPID('F');

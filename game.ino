@@ -4,7 +4,7 @@ void game() {
   }
 }
 
-void firstRound() {
+void secondRound() {
   while ( 1 ) {
    
     leaveSquare(); // start
@@ -109,8 +109,7 @@ void firstRound() {
     turn('R');
     onToMesh();
     goHome();
-    onToBlack();
-    goHome();// shotest path
+    onToBlack();// shotest path
 
     turn('L');
 

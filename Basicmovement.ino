@@ -3,8 +3,7 @@ void lineFollowMove(int count)
   leftCount = 0;
   rightCount = 0;
 
-  setLineFollow('E');
-
+  setLineFollow('B');
   while (leftCount <= count && rightCount <= count) lineFollow();
   brake( 'B' );
 }

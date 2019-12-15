@@ -23,10 +23,10 @@ int leftMotorSpeed;
 
 char manner;
 char temp;
-#define junctionCount 210 //encoder counts needed to bring the robot at center of juction
+int junctionCount = 210; //encoder counts needed to bring the robot at center of juction
 #define skipJunction  120
 int T = 210;
-int L = 230;
+int L = 210;
 //Mototrs -------------------------------------------
 #define leftMotorForward 53//48  //motor directions
 #define leftMotorBackward 52//46

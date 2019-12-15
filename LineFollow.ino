@@ -82,13 +82,13 @@ void setLineFollow(char manner)
       Kd = 1.2;
       Ki = 0.009;
       minSpeed = 0;
-      baseSpeed = 140;
-      maxSpeed = 170;
+      baseSpeed = 170;
+      maxSpeed = 200;
       break;
     case 'N'://backword  
       Kp = 0.089;
       Kd = 1.2;
-      Ki = 0.00000000000000000009;
+      Ki = 0.00000000009;
       minSpeed = 0;
       baseSpeed = 160;
       maxSpeed = 200;

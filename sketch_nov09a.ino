@@ -100,6 +100,7 @@ void setup() {
 } //end setup
 
 void loop() {
+  lineFollowMove(200);
   //for white line
   //lineMode = 0;
 //
@@ -140,7 +141,7 @@ void loop() {
   //turnAngle(180);
   //  onToDashLine();
   //  inDashLine();
-  firstRound();
+  //secondRound();
 
   //lineMzaSolve();
 
