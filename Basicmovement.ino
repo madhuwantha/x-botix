@@ -115,7 +115,13 @@ void turn(char input) //Explicit turnings
           turnAngle(-90);
           break;
         }
-        else lineFollow();
+        else {
+          if (lineMode == 0 ) {
+            lineFollowInMash();
+          } else {
+            lineFollow();
+          }
+        }
       }
       break;
 
@@ -133,7 +139,13 @@ void turn(char input) //Explicit turnings
           turnAngle(90);
           break;
         }
-        else lineFollow();
+        else {
+          if (lineMode == 0 ) {
+            lineFollowInMash();
+          } else {
+            lineFollow();
+          }
+        }
       }
       break;
 
@@ -264,7 +276,7 @@ void turnAngle(int angle)   //change - 7    encoder counts for turns
       setEncoderPID('X');
       leftTurn();
       countStart();
-      while (leftCount < 300 && rightCount < 300) encoderPID();
+      while (leftCount < 300 && rightCount < 300) encoderPIDA();
       //      setEncoderPID('F');
       //      leftTurn();
       //      countStart();
@@ -274,7 +286,7 @@ void turnAngle(int angle)   //change - 7    encoder counts for turns
       setEncoderPID('X');
       rightTurn();
       countStart();
-      while (leftCount < 300 && rightCount < 300) encoderPID();
+      while (leftCount < 300 && rightCount < 300) encoderPIDA();
       //      setEncoderPID('F');
       //      rightTurn();
       //      countStart();
@@ -285,7 +297,7 @@ void turnAngle(int angle)   //change - 7    encoder counts for turns
       setEncoderPID('X');
       rightTurn();
       countStart();
-      while (leftCount < 420 && rightCount < 420) encoderPID();
+      while (leftCount < 420 && rightCount < 420) encoderPIDA();
       setEncoderPID('F');
       break;
   }
@@ -305,12 +317,13 @@ void turnAngle(int angle)   //change - 7    encoder counts for turns
   }
   while (1)
   {
-    qtrRead();
-    if (lineMode == 1 ) {
+    if (lineMode == 0 ) {
       qtrReadMesh();
+    } else {
+      qtrRead();
     }
     if (  dval[7] || dval[8]  )      //16-qtr - 7
-    {
+    {      
       switch (angle)
       {
         case -90:
@@ -330,6 +343,7 @@ void turnAngle(int angle)   //change - 7    encoder counts for turns
 
   //ontoLine(200);
   setLineFollow( manner );
+  stoP();
   leftCount = 0;
   rightCount = 0;
 }
@@ -363,6 +377,10 @@ void brake() //active brake
   digitalWrite(rightMotorBackward, HIGH);
 
   delay(250);
+}
+
+void stoP() {
+  motorSpeed(0, 0);
 }
 
 void motorSpeed(bool state)

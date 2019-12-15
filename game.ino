@@ -97,6 +97,7 @@ void firstRound() {
     turn('R');// after the ramp
 
     onToMesh( );
+    
     lineMzaSolve() ;// mesh
     
     ontoL(0);

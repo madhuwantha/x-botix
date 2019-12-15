@@ -75,13 +75,14 @@ void blue() {
 
 
 void getSword() {
-
-  //  turn('L');
-  //  turn('L');
+  
+  turn('L');
+  turn('L');
   setLineFollow('S');
   ontoBreakPoint(1);
   setLineFollow(manner);
   encoderMove( -160 );
+  stoP();
   baseToCatch();
   delay(500);
   catchSorb();

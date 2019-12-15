@@ -28,7 +28,6 @@ void keyPad () {
           keyPad ();
           break;
         case 'E':
-
           break;
         case 'F':
           qtrLoad();
@@ -37,7 +36,6 @@ void keyPad () {
           loop();
           break;  
       }
-
       break;
     }
   }

@@ -55,8 +55,8 @@ void releseSorb() {
 }
 
 void vibrate() {
-  rightCatchServo.write( 63);
-  leftCatchServo.write( 112 );
+  rightCatchServo.write( 64);
+  leftCatchServo.write( 110 );
 }
 void baseToCatch() {
   baseServoRotate(07);

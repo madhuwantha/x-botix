@@ -121,4 +121,4 @@ int pathIndex = 0; // used to reach an specific array element.
 
 
 // ******************************Line mode*********************************************//
-bool lineMode = 0;
+bool lineMode = 1;  // initially for black line 

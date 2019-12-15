@@ -1,6 +1,7 @@
 
 
 void goHome() {
+  lineMode = 0;
   int i = pathLength - 1;
   while (i >= 0) {
     char j = path[pathLength];
@@ -17,29 +18,27 @@ void goHome() {
 
       case 'S':
         //skip junction
+        skipTurn();
         break;
     }
     i--;
   }
-
+  lineMode = 0;
 }
 
 
 //=====================================Line Maze==============================
 
 void lineMzaSolve() {
+  lineMode = 0;
   setLineFollow( manner );
   while (!status) {
-    manner = 'F';
     checkJunctionMaze();
     light('O');
     switch (mode) {
       case NO_LINE:
         brake('B');
         checkJunctionMaze();
-//        if ( mode != NO_LINE ) {
-//          break;
-//        }
         turnAngle(180);
         recIntersection('B');
         lineFollowInMash();
@@ -50,9 +49,6 @@ void lineMzaSolve() {
         doubleLight();
         centerAtJunction(T);
         checkJunctionMaze();
-//        if ( mode != CONT_LINE ) {
-//          break;
-//        }
         if (mode == END_MAZE) {
           red();
           mazeEnd();
@@ -66,9 +62,6 @@ void lineMzaSolve() {
         brake('B');
         rightLight();
         checkJunctionMaze();
-//        if ( mode != RIGHT_TURN ) {
-//          break;
-//        }
         centerAtJunction(L);
         turnAngle(90);
         recIntersection('R');
@@ -79,9 +72,6 @@ void lineMzaSolve() {
         brake('B');
         leftLight();
         checkJunctionMaze();
-//        if ( mode != LEFT_TURN ) {
-//          break;
-//        }
         centerAtJunction(L);
         checkJunctionMaze();
         if (mode == NO_LINE) {
@@ -111,6 +101,7 @@ void lineMzaSolve() {
     }
 
   }
+  lineMode = 1;
 }
 
 //------------------------------------------------------------------------
@@ -261,6 +252,7 @@ void checkJunctionMaze() {
 
 void mazeEnd() {
   mode = STOPPED;
+  lineMode = 1;
   status = 1;
 }
 

@@ -101,6 +101,11 @@ void setup() {
 
 void loop() {
 
+  //onToMesh( );
+  //encoderMove(100);
+  //lineMzaSolve() ;// mesh
+  //getSword();
+
   //  getSword();
   //  turnAngle(180);
   //  skipTurn();
@@ -127,14 +132,17 @@ void loop() {
   //turnAngle(180);
   //  onToDashLine();
   //  inDashLine();
-//  firstRound();
+  //  firstRound();
 
-  lineMode = 1;
-  lineMzaSolve();
-  encoderMove(-100);
-  turnAngle(180);
-  
-  
+      lineMzaSolve();
+      encoderMove(-100);
+      lineMode = 0;
+      turnAngle(180);
+      goHome();
+
+
+
+
   //    getSword();
   //  onToDashLine();
   //  inDashLine();

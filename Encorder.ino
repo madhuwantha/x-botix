@@ -91,6 +91,19 @@ void encoderPID()
   motorSpeed(leftMotorSpeed, rightMotorSpeed);
 }
 
+void encoderPIDA()
+{
+  int error = leftCount - rightCount;
+
+  int controlSpeed = Kp * error + Kd * (error - lastError); // + Ki*integral;
+  lastError = error;
+
+  int rightMotorSpeed = constrain((baseSpeed + controlSpeed), minSpeed, maxSpeed);
+  int leftMotorSpeed = constrain((baseSpeed  - controlSpeed), minSpeed, maxSpeed);
+
+  motorSpeed(leftMotorSpeed, rightMotorSpeed);
+}
+
 void encoderPID(int dash)
 {
   int error = leftCount - rightCount - dash;
