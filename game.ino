@@ -6,7 +6,7 @@ void game() {
 
 void secondRound() {
   while ( 1 ) {
-   
+
     leaveSquare(); // start
     turn('R'); //to A
     ontoBreakPoint(1); // A
@@ -61,14 +61,14 @@ void secondRound() {
     IndicateinC();
 
     light( 'O' );
- 
+
     //turnAngle(180);
     encoderbackTurn();
 
     leaveSquare();
 
     ontoLine(100);
- 
+
     skipTurn(); // crose line after C
 
     turn('R');
@@ -88,15 +88,15 @@ void secondRound() {
     pushButton(); // push button
 
     skipTurn();
-    
-    turn( 'R' );
-   
+
+    turn( 'R' );  // should be removed
+
     skipTurn(); // before the ramp
-    
+
     ramp();
 
     turn('R');// after the ramp
- 
+
     onToMesh( );
 
     lineMzaSolve() ;// mesh
@@ -111,28 +111,29 @@ void secondRound() {
     goHome();
     onToBlack();// shotest path
 
+    lineMode = 1;
     turn('L');
 
     ramp();
 
     turn('L');
+    skipTurn();
 
-    ontoL(1);
 
-    centerAtJunction(L);
-    switch (colorCount) {
-      case 1:
-        break;
-      case 2:
-        turnAngle(90);
-        turn('L');
-        break;
-      case 3:
-        turnAngle(90);
-        skipTurn();
-        turn( 'L' );
-        break;
-    }
+    //    centerAtJunction(L);
+    //    switch (colorCount) {
+    //      case 1:
+    //        break;
+    //      case 2:
+    //        turnAngle(90);
+    //        turn('L');
+    //        break;
+    //      case 3:
+    //        turnAngle(90);
+    //        skipTurn();
+    //        turn( 'L' );
+    //        break;
+    //    }
     putSword();
   }
 }

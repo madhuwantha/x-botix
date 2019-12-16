@@ -62,7 +62,7 @@ void baseToCatch() {
   baseServoRotate(07);
 }
 void  baseToPut() {
-  for ( int i = 101; i > 35; i-- ) {
+  for ( int i = 101; i > 5; i-- ) {
     baseServoRotate(i);
     delay(20);
   }

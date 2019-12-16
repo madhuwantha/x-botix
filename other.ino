@@ -76,8 +76,8 @@ void blue() {
 
 void getSword() {
 
-  turn('L');
-  turn('L');
+  //  turn('L');
+  //  turn('L');
   setLineFollow('S');
   ontoBreakPoint(1);
   setLineFollow(manner);
@@ -92,7 +92,7 @@ void getSword() {
 }
 
 void putSword() {
-  setLineFollow('S');
+  setLineFollow('F');
   // on to break point
   while (1)
   {
@@ -116,34 +116,52 @@ void putSword() {
   }
   setLineFollow(manner);
   brakeTime = 5;
-  encoderMove( -40 );
+  encoderMove( 40 );
+  for ( int i = 65; i < 140; i++ ) {
+    rightColorServo( i );
+    leftColorServo( i );
+    delay(15);
+  }
+  delay(1000);
+  for ( int i = 140; i > 65; i-- ) {
+    rightColorServo( i );
+    leftColorServo( i );
+    delay(15);
+  }
+
+  encoderMove( -70 );
+  for ( int i = 65; i < 140; i++ ) {
+    rightColorServo( i );
+    leftColorServo( i );
+    delay(15);
+  }
   brakeTime = 50;
   baseToPut();
-  delay(500);
-  baseServoRotate( 1 );
-  delay(500);
+  for ( int i = 140; i > 65; i-- ) {
+    rightColorServo( i );
+    leftColorServo( i );
+    delay(15);
+  }
   releseSorb();
 
   ServoIntiate();
 }
 
 void ramp() {
-  leftCount = 0;
-  rightCount = 0;
+
   ontoBreakPoint(1);
+  encoderMove(-150);
   delay(500);
-  setEncoderPID('F');
-  er = 20;
-  while ( leftCount < 500 &&  rightCount < 500 ) {
-    encoderPID();
-  }
-  brake('B');
-  delay(2000);
+  int tempB = brakeTime;
+  brakeTime = 5;
+  centerAtLine();
+  ontoBreakPoint(1);
+  brakeTime = tempB;
+  setEncoderPID('R');
   leftCount = 0;
   rightCount = 0;
-  setEncoderPID('F');
   er = 20;
-  while ( leftCount < 900 &&  rightCount < 900 ) {
+  while ( leftCount < 1400 &&  rightCount < 1400 ) {
     encoderPID();
   }
   brake('B');

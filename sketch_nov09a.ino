@@ -96,17 +96,41 @@ void setup() {
 
 
   ServoIntiate();
-  keyPad ();
+  //keyPad ();
+  qtrLoad();
+  setLineFollow( 'S' );
 } //end setup
 
 void loop() {
-  lineFollowMove(200);
+  lineFollow();
+//setColorServo();
+  //  skipTurn();
+  //  ramp();
+  //  getSword();
+  //  encoderMove(-100);
+  //  turnAngle(180);
+  //  encoderMove(-100);
+  //  ramp();
+  //  turn( 'L' );
+//  up();
+//  delay(1000);
+//  catchSorb();
+//  delay(1000);
+//  vibrate();
+//  skipTurn();
+//  putSword();
+
+ // secondRound();
+
+
+  //centerAtLine();
+  //lineFollowMove(200);
   //for white line
   //lineMode = 0;
-//
-//  skipTurn();
-//
-//  turn( 'R' );
+  //
+  //  skipTurn();
+  //
+  //  turn( 'R' );
 
 
 
@@ -154,5 +178,6 @@ void loop() {
   //  inDashLine();
   //  centerAtJunction(T);
   //  turnAngle(-90);
-  delay(1000000000000000000);
+ // oneColor( tcsO );
+  //delay(1000000000000000000);
 }

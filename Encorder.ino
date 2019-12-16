@@ -64,7 +64,7 @@ void setEncoderPID(char manner)
       //Ki = ;
       minSpeed = 140;
       baseSpeed = 170;
-      maxSpeed = 290;
+      maxSpeed = 190;
       break;
 
     case 'X'://Xtremely Fast
