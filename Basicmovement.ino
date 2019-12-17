@@ -1,3 +1,56 @@
+void centertoBreakPoint() {
+  qtrRead();
+  setEncoderPID('B');
+  if ( !(dval[7] && dval[8]) ) {
+    while (!(dval[7] && dval[8]))
+    {
+      qtrRead();
+      encoderPID();
+    }
+    int tempB = brakeTime;
+    brakeTime = 5;
+    brake( 'B' );
+    brakeTime = tempB;
+  }
+  setLineFollow( manner );
+  stoP();
+}
+
+void centerAtWhiteLine() {
+  lineMode = 0;
+  forward();
+  uint16_t position = qtr.readLineWhite(sensorValues);
+  for (int i = 0; i < SensorCount ; i++ )
+  {
+    if (sensorValues[i] < 600) dval[i] = 1;
+    else dval[i] = 0;
+  }
+  int b = 0;
+  while (!(dval[7] && dval[8]))
+  {
+    if (position > 7500) {
+      rightTurn(180, 180);
+      b = 1;
+    }
+    else if (position < 7500) {
+      leftTurn(180, 180);
+      b = 0;
+    }
+    qtrReadMesh();
+  }
+  int tempB = brakeTime;
+  brakeTime = 5;
+  if ( b == 1 ) {
+    brake( 'L' );
+  } else {
+    brake( 'R' );
+  }
+  brakeTime = tempB;
+  setLineFollow( manner );
+  stoP();
+}
+
+
 void centerAtLine() {
   forward();
   uint16_t position = qtr.readLineBlack(sensorValues);
@@ -101,7 +154,7 @@ void ontoT(bool BRAKE)
   while (1)
   {
     qtrRead();
-    if (dval[2] && dval[3] && dval[13] && dval[14])      //16-qtr - 3
+    if (dval[2] && dval[3] && dval[12] && dval[13])      //16-qtr - 3
     {
       if (BRAKE) brake('B');
       doubleLight();
@@ -121,7 +174,7 @@ void skipTurn()
     } else {
       qtrRead();
     }
-    if ( (dval[2] && dval[3]) || (dval[10] && dval[11]) )      //16-qtr - 5
+    if ( (dval[0] && dval[1]) || (dval[13] && dval[14]) )      //16-qtr - 5
     {
       break;
     }
@@ -220,7 +273,7 @@ void ontoL(bool BRAKE)
   while (1)
   {
     qtrRead();
-    if ( (dval[2] && dval[3]) || (dval[13] && dval[14]) )      //16-qtr - 4
+    if ( (dval[2] && dval[3]) || (dval[12] && dval[13]) )      //16-qtr - 4
     {
       if (BRAKE) brake('B');
       if ((dval[0] && dval[1])) {
@@ -279,12 +332,17 @@ void onToDashLine() {
 }
 
 void inDashLine() {
-
+  int i = 0;
   while (1) {
     if (isLine()) {
+      //      if ( i == 0 ) {
+      //        centerAtLine();
+      //      }
+      i = 1;;
       setLineFollow( 'D' );
       lineFollow();
     } else {
+      i = 0;
       setEncoderPID('S');
       encoderPID();
     }
@@ -317,7 +375,7 @@ void onToBlack() {
     if ( dval[0] && dval[1] && dval[14] && dval[15] && !( dval[7] || dval[8]  ) ) {
       break;
     }
-    lineFollow();
+    lineFollowInMash();
   }
   brake('B');
 }

@@ -124,3 +124,8 @@ int pathIndex = 0; // used to reach an specific array element.
 
 // ******************************Line mode*********************************************//
 bool lineMode = 1;  // initially for black line 
+
+
+
+///*LCD Configurations*/
+//LiquidCrystal_I2C lcd(0x27, 16, 2);

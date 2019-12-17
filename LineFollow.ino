@@ -51,18 +51,24 @@ void setLineFollow(char manner)
       break;
 
     case 'F'://Fast
-      Kp = 0.1555;
-      Kd = 2.80555599;
-      Ki = 0.0115555;
+      //      Kp = 0.1555;
+      //      Kd = 2.80555599;
+      //      Ki = 0.0115555;
+      Kp = 5;
+      Kd = 20;
+      Ki = 0;
       minSpeed = 0;
       baseSpeed = 200;
       maxSpeed = 230;
       break;
 
     case 'V'://Very fast
-      Kp = 0.1555;
-      Kd = 1.80555599;
-      Ki = 0.0000000000115555;
+      //      Kp = 0.1555;
+      //      Kd = 1.80555599;
+      //      Ki = 0.0000000000115555;
+      Kp = 5;
+      Kd = 20;
+      Ki = 0;
       minSpeed = 0;
       baseSpeed = 230;
       maxSpeed = 245;
@@ -85,7 +91,7 @@ void setLineFollow(char manner)
       baseSpeed = 170;
       maxSpeed = 200;
       break;
-    case 'N'://backword  
+    case 'N'://backword
       Kp = 0.089;
       Kd = 1.2;
       Ki = 0.00000000009;
@@ -114,22 +120,22 @@ void lineFollow()
 {
   uint16_t position = qtr.readLineBlack(sensorValues);
   int error = position - 7500;
-  Serial.print(  error );
-  Serial.print(  "     " );
+  //  Serial.print(  error );
+  //  Serial.print(  "     " );
 
   integral = integral + error;
 
   int controlSpeed = Kp * error + Kd * (error - lastError) + Ki * integral;
   //Serial.print(  controlSpeed );
-  Serial.print(  "     " );
+  //  Serial.print(  "     " );
   lastError = error;
 
   byte rightMotorSpeed = constrain((baseSpeed - controlSpeed), minSpeed, maxSpeed);
   byte leftMotorSpeed = constrain((baseSpeed +   controlSpeed), minSpeed, maxSpeed);
-
-  Serial.print(  leftMotorSpeed );
-  Serial.print(  "   " );
-  Serial.println(rightMotorSpeed   );
+  //
+  //  Serial.print(  leftMotorSpeed );
+  //  Serial.print(  "   " );
+  //  Serial.println(rightMotorSpeed   );
   motorSpeed(leftMotorSpeed, rightMotorSpeed);
 }
 
@@ -138,7 +144,7 @@ void lineFollow()
 void lineFollowInMash()
 {
   uint16_t position = qtr.readLineWhite(sensorValues);
-  int error = position - 7000;
+  int error = position - 7500;
 
   integral = integral + error;
 

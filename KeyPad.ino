@@ -47,7 +47,7 @@ void keyPad () {
         case 'F': // start
           temp  = manner;
           qtrLoad();
-          setEncoderPID('F');
+//          setEncoderPID('F');
           setLineFollow( manner );
           loop();
           break;

@@ -39,7 +39,7 @@ void goHome() {
 
 void lineMzaSolve() {
   lineMode = 0;
-  setLineFollow( 'V' );
+  setLineFollow( manner );
   while (!status) {
     checkJunctionMaze();
     light('O');
@@ -49,6 +49,7 @@ void lineMzaSolve() {
         checkJunctionMaze();
         turnAngle(180);
         recIntersection('B');
+        centerAtWhiteLine();
         lineFollowInMash();
         break;
 
@@ -63,6 +64,7 @@ void lineMzaSolve() {
         }
         turnAngle(90);
         recIntersection('R');
+        centerAtWhiteLine();
         lineFollowInMash();
         break;
 
@@ -73,6 +75,7 @@ void lineMzaSolve() {
         centerAtJunction(L);
         turnAngle(90);
         recIntersection('R');
+        centerAtWhiteLine();
         lineFollowInMash();
         break;
 
@@ -85,10 +88,12 @@ void lineMzaSolve() {
         if (mode == NO_LINE) {
           turnAngle(-90);
           recIntersection('L');
+          centerAtWhiteLine();
           lineFollowInMash();
         }
         else {
           recIntersection('S');
+          centerAtWhiteLine();
           lineFollowInMash();
         }
         break;
@@ -245,7 +250,8 @@ void checkJunctionMaze() {
     junctionMaze = 'T';
     mode = CONT_LINE;
   }
-  else if (!(dval[0] || dval[1] || dval[2] || dval[3] || dval[4] || dval[5] || dval[6] || dval[7] || dval[8] || dval[9] || dval[10] || dval[11] || dval[12] || dval[13] || dval[14] || dval[15] )) {
+  else if (!(dval[0] || dval[1] || dval[2] || dval[3] || dval[4] || dval[5] || dval[6] || dval[7] || dval[8] 
+  || dval[9] || dval[10] || dval[11] || dval[12] || dval[13] || dval[14] || dval[15] )) {
     junctionMaze = 'B';
     mode = NO_LINE;
   }

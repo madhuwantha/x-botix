@@ -76,28 +76,38 @@ void blue() {
 
 void getSword() {
 
-  //  turn('L');
-  //  turn('L');
+  turn('L');
+  turn('L');
+  geT();
+}
+
+void geT() {
+  centerAtLine();
+  delay(500);
   setLineFollow('S');
+  int tempB = brakeTime;
+  brakeTime = 5;
   ontoBreakPoint(1);
+  centertoBreakPoint();
   setLineFollow(manner);
   encoderMove( -160 );
   stoP();
   baseToCatch();
-  delay(500);
+  delay(100);
   catchSorb();
-  delay(500);
+  delay(200);
   up();
   vibrate();
+  brakeTime = tempB;
 }
 
 void putSword() {
-  setLineFollow('F');
+  setLineFollow('S');
   // on to break point
   while (1)
   {
     qtrRead();
-    if (dval[5] && dval[6] && dval[11] && dval[12])      //16-qtr - 3
+    if (dval[3] && dval[4] && dval[11] && dval[12])      //16-qtr - 3
     {
       if (1) brake();
       doubleLight();
@@ -106,6 +116,7 @@ void putSword() {
     lineFollow();
   }
   setEncoderPID('S');
+  //onto white break point
   while ( 1 ) {
     qtrRead();
     if ( !dval[7] && !dval[8]  ) {
@@ -114,36 +125,13 @@ void putSword() {
     }
     encoderPID();
   }
+  // function for center at white break point
+
   setLineFollow(manner);
-  brakeTime = 5;
-  encoderMove( 40 );
-  for ( int i = 65; i < 140; i++ ) {
-    rightColorServo( i );
-    leftColorServo( i );
-    delay(15);
-  }
-  delay(1000);
-  for ( int i = 140; i > 65; i-- ) {
-    rightColorServo( i );
-    leftColorServo( i );
-    delay(15);
-  }
-
-  encoderMove( -70 );
-  for ( int i = 65; i < 140; i++ ) {
-    rightColorServo( i );
-    leftColorServo( i );
-    delay(15);
-  }
-  brakeTime = 50;
+  stoP();
   baseToPut();
-  for ( int i = 140; i > 65; i-- ) {
-    rightColorServo( i );
-    leftColorServo( i );
-    delay(15);
-  }
   releseSorb();
-
+  delay(1000);
   ServoIntiate();
 }
 
@@ -156,7 +144,6 @@ void ramp() {
   brakeTime = 5;
   centerAtLine();
   ontoBreakPoint(1);
-  brakeTime = tempB;
   setEncoderPID('R');
   leftCount = 0;
   rightCount = 0;
@@ -165,6 +152,8 @@ void ramp() {
     encoderPID();
   }
   brake('B');
+  brakeTime = tempB;
+  centerAtLine();
   ontoLine(100);
 }
 
@@ -199,4 +188,42 @@ bool isMetal() {
   } else {
     return 0;
   }
+}
+
+
+
+void getMetalSword() {
+  turn('L');
+  turn('L');
+  geT();
+  if ( isMetal()  ) {
+    turnAngle(180);
+    encoderMove( -300 );
+    turn('R');
+    turn('R');
+  } else {
+    turnAngle(180);
+    encoderMove( -300 );
+    turn('L');
+    turn('L');
+    geT();
+    if ( isMetal()  ) {
+      turnAngle(180);
+      encoderMove( -300 );
+      turn('R');
+      skipTurn();
+      turn('R');
+    } else {
+      turnAngle(180);
+      encoderMove( -300 );
+      turn('L');
+      turn('L');
+      geT();
+      turn('R');
+      skipTurn();
+      skipTurn();
+      turn('R');
+    }
+  }
+
 }

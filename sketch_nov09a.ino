@@ -26,6 +26,13 @@ void setup() {
   Serial.begin(9600);                     //Begin serial communication at 9600 baud rate
   interrupts();                           //turn on interrupts explicitly
 
+  //
+  //  /*LCD Initialize*/
+  //  lcd.init();
+  //  lcd.init();
+  //  lcd.backlight();
+  //  lcd.clear();
+
   //QTR Sensor ----------------------------------------------------------------------------------------------------
   qtr.setTypeAnalog();                    // configure the QTR sensors
   qtr.setSensorPins((const uint8_t[]) {
@@ -65,6 +72,7 @@ void setup() {
   pinMode(greenpin, OUTPUT);
   pinMode(bluepin, OUTPUT);
 
+
   if (tcsN.begin()) {
     Serial.println("Found New sensor");
   } else {
@@ -96,14 +104,24 @@ void setup() {
 
 
   ServoIntiate();
-  //keyPad ();
-  qtrLoad();
-  setLineFollow( 'S' );
+  keyPad ();
 } //end setup
 
 void loop() {
-  lineFollow();
-//setColorServo();
+  //centerAtWhiteLine();
+  //Serial.println(  isMetal() );
+
+  //    baseToCatch();
+  //    delay(100);
+  //    catchSorb();
+  //    up();
+  //    vibrate();
+  //  delay(2000);
+  //ontoBreakPoint(1);
+  //lineMzaSolve();
+  //lineFollow();
+  secondRound() ;
+  //setColorServo();
   //  skipTurn();
   //  ramp();
   //  getSword();
@@ -111,16 +129,16 @@ void loop() {
   //  turnAngle(180);
   //  encoderMove(-100);
   //  ramp();
-  //  turn( 'L' );
-//  up();
-//  delay(1000);
-//  catchSorb();
-//  delay(1000);
-//  vibrate();
-//  skipTurn();
-//  putSword();
+  //turn( 'L' );
+  //  up();
+  //  delay(1000);
+  //  catchSorb();
+  //  delay(1000);
+  //  vibrate();
+  //  skipTurn();
+  //  putSword();
 
- // secondRound();
+  // secondRound();
 
 
   //centerAtLine();
@@ -178,6 +196,7 @@ void loop() {
   //  inDashLine();
   //  centerAtJunction(T);
   //  turnAngle(-90);
- // oneColor( tcsO );
-  //delay(1000000000000000000);
+  // oneColor( tcsO );
+  stoP();
+  delay(1000000000000000000);
 }
