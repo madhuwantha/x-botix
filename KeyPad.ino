@@ -9,26 +9,25 @@ void keyPad () {
       {
         case 'A':
           qtrSave();
-          delay(500);
           keyPad ();
           break;
-        case 'B': // fast
+        case 'B': // medium
           junctionCount = 210;
-          T = 210;
-          L = 210;
+          T = 190;
+          L = 190;
           manner = 'F';
-          brakeTime = 20;
+          brakeTime = 30;
           keyPad();
           break;
-        case 'C': // verry fast
+        case 'C': // fast
           junctionCount = 210;
-          T = 210;
-          L = 210;
+          T = 240;
+          L = 240;
           manner = 'V';
           brakeTime = 30;
           keyPad ();
           break;
-        case 'D': // ultra fast
+        case 'D': // verry fast
           junctionCount = 210;
           T = 210;
           L = 210;

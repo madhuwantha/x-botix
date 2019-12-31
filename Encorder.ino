@@ -72,8 +72,8 @@ void setEncoderPID(char manner)
       Kd = 50;
       //Ki = ;
       minSpeed = 200;
-      baseSpeed = 255;
-      maxSpeed = 255;
+      baseSpeed = 225;
+      maxSpeed = 225;
     case 'B':
       backward();
       Kp = 10;

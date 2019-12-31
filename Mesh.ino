@@ -3,12 +3,12 @@
 void goHome() {
   lineMode = 0;
 
-//  path[0] = 'R';
-//  path[1] = 'L';
-//  path[2] = 'S';
-//  path[3] = 'R';
-//  path[4] = 'L';
-//  pathLength = 5;
+  //  path[0] = 'R';
+  //  path[1] = 'L';
+  //  path[2] = 'S';
+  //  path[3] = 'R';
+  //  path[4] = 'L';
+  //  pathLength = 5;
   int i = pathLength - 1;
   while (i >= 0) {
     char j = path[i];
@@ -46,10 +46,10 @@ void lineMzaSolve() {
     switch (mode) {
       case NO_LINE:
         brake('B');
-        checkJunctionMaze();
+        centerAtJunction(T);
         turnAngle(180);
         recIntersection('B');
-        centerAtWhiteLine();
+        //centerAtWhiteLine();
         lineFollowInMash();
         break;
 
@@ -64,36 +64,34 @@ void lineMzaSolve() {
         }
         turnAngle(90);
         recIntersection('R');
-        centerAtWhiteLine();
+        //centerAtWhiteLine();
         lineFollowInMash();
         break;
 
       case RIGHT_TURN:
         brake('B');
         rightLight();
-       // checkJunctionMaze();
         centerAtJunction(L);
         turnAngle(90);
         recIntersection('R');
-        centerAtWhiteLine();
+        //centerAtWhiteLine();
         lineFollowInMash();
         break;
 
       case LEFT_TURN:
         brake('B');
         leftLight();
-        checkJunctionMaze();
         centerAtJunction(L);
         checkJunctionMaze();
         if (mode == NO_LINE) {
           turnAngle(-90);
           recIntersection('L');
-          centerAtWhiteLine();
+          //centerAtWhiteLine();
           lineFollowInMash();
         }
         else {
           recIntersection('S');
-          centerAtWhiteLine();
+          //centerAtWhiteLine();
           lineFollowInMash();
         }
         break;
@@ -104,6 +102,7 @@ void lineMzaSolve() {
 
       case END_MAZE:
         brake('B');
+        
         checkJunctionMaze();
         //        if ( mode != END_MAZE ) {
         //          break;
@@ -234,8 +233,8 @@ void checkJunctionMaze() {
   qtrReadMesh();
   junctionMaze = ' ';
 
-  bool L = dval[2] && dval[3];
-  bool R = dval[10] && dval[11];
+  bool L = dval[2] ;
+  bool R = dval[13] ;
   bool M = dval[7] && dval[8] ;
 
   if (L && !R) { //Left junction
@@ -250,8 +249,8 @@ void checkJunctionMaze() {
     junctionMaze = 'T';
     mode = CONT_LINE;
   }
-  else if (!(dval[0] || dval[1] || dval[2] || dval[3] || dval[4] || dval[5] || dval[6] || dval[7] || dval[8] 
-  || dval[9] || dval[10] || dval[11] || dval[12] || dval[13] || dval[14] || dval[15] )) {
+  else if (!(dval[0] || dval[1] || dval[2] || dval[3] || dval[4] || dval[5] || dval[6] || dval[7] || dval[8]
+             || dval[9] || dval[10] || dval[11] || dval[12] || dval[13] || dval[14] || dval[15] )) {
     junctionMaze = 'B';
     mode = NO_LINE;
   }
@@ -278,7 +277,7 @@ void qtrReadMesh()
 
   for (int i = 0; i < SensorCount ; i++ )
   {
-    if (sensorValues[i] > 850) dval[i] = 0;
+    if (sensorValues[i] > 750) dval[i] = 0;
     else dval[i] = 1;
   }
 }

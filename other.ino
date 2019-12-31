@@ -75,7 +75,7 @@ void blue() {
 
 
 void getSword() {
-
+  lineMode = 1;
   turn('L');
   turn('L');
   geT();
@@ -90,10 +90,10 @@ void geT() {
   ontoBreakPoint(1);
   centertoBreakPoint();
   setLineFollow(manner);
-  encoderMove( -160 );
+  encoderMove( -70 );
   stoP();
   baseToCatch();
-  delay(100);
+  delay(500);
   catchSorb();
   delay(200);
   up();
@@ -129,6 +129,7 @@ void putSword() {
 
   setLineFollow(manner);
   stoP();
+  encoderMove(-35);
   baseToPut();
   releseSorb();
   delay(1000);
@@ -138,7 +139,7 @@ void putSword() {
 void ramp() {
 
   ontoBreakPoint(1);
-  encoderMove(-150);
+  encoderMove(-150); 
   delay(500);
   int tempB = brakeTime;
   brakeTime = 5;
@@ -148,7 +149,7 @@ void ramp() {
   leftCount = 0;
   rightCount = 0;
   er = 20;
-  while ( leftCount < 1400 &&  rightCount < 1400 ) {
+  while ( leftCount < 1500 &&  rightCount < 1500 ) {
     encoderPID();
   }
   brake('B');
@@ -162,10 +163,10 @@ void pushButton() {
   encoderMove(-190);
   turnAngle(180);
   leftCount = rightCount = 0;
-  ontoLine(250);
-  brake('B');
+  encoderMove(50);
+ // centerAtLine();
   delay(500);
-  encoderMove(-650);
+  encoderMove(-600);
 }
 
 
@@ -193,32 +194,37 @@ bool isMetal() {
 
 
 void getMetalSword() {
+  lineMode = 1;
   turn('L');
   turn('L');
   geT();
   if ( isMetal()  ) {
     turnAngle(180);
-    encoderMove( -300 );
+    encoderMove( -30 );
     turn('R');
     turn('R');
   } else {
+    ServoIntiate();
     turnAngle(180);
-    encoderMove( -300 );
+    encoderMove( -30 );
     turn('L');
     turn('L');
     geT();
     if ( isMetal()  ) {
       turnAngle(180);
-      encoderMove( -300 );
+      encoderMove( -30 );
       turn('R');
       skipTurn();
       turn('R');
     } else {
+      ServoIntiate();
       turnAngle(180);
-      encoderMove( -300 );
+      encoderMove( -30 );
       turn('L');
       turn('L');
       geT();
+      turnAngle(180);
+      encoderMove( -30 );
       turn('R');
       skipTurn();
       skipTurn();

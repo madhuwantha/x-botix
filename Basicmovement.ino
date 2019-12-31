@@ -8,7 +8,7 @@ void centertoBreakPoint() {
       encoderPID();
     }
     int tempB = brakeTime;
-    brakeTime = 5;
+    brakeTime = 2;
     brake( 'B' );
     brakeTime = tempB;
   }
@@ -39,7 +39,7 @@ void centerAtWhiteLine() {
     qtrReadMesh();
   }
   int tempB = brakeTime;
-  brakeTime = 5;
+  brakeTime = 0.1;
   if ( b == 1 ) {
     brake( 'L' );
   } else {
@@ -198,10 +198,10 @@ void turn(char input) //Explicit turnings
     case 'L': //Go forward and Turn Left
       while (1)
       {
-        if (lineMode == 0 ) {
-          qtrReadMesh();
-        } else {
+        if (lineMode == 1 ) {
           qtrRead();
+        } else {
+          qtrReadMesh();
         }
         if (dval[2] && dval[3])      //16-qtr - 6
         {
@@ -210,10 +210,10 @@ void turn(char input) //Explicit turnings
           break;
         }
         else {
-          if (lineMode == 0 ) {
-            lineFollowInMash();
-          } else {
+          if (lineMode == 1 ) {
             lineFollow();
+          } else {
+            lineFollowInMash();
           }
         }
       }
@@ -222,10 +222,10 @@ void turn(char input) //Explicit turnings
     case 'R': //Go forward and turn right
       while (1)
       {
-        if (lineMode == 0 ) {
-          qtrReadMesh();
-        } else {
+        if (lineMode == 1 ) {
           qtrRead();
+        } else {
+          qtrReadMesh();
         }
         if (dval[12] && dval[13])      //16-qtr - 2
         {
@@ -234,10 +234,10 @@ void turn(char input) //Explicit turnings
           break;
         }
         else {
-          if (lineMode == 0 ) {
-            lineFollowInMash();
-          } else {
+          if (lineMode == 1 ) {
             lineFollow();
+          } else {
+            lineFollowInMash();
           }
         }
       }
@@ -393,71 +393,79 @@ void turnAngle(int angle)   //change - 7    encoder counts for turns
       setEncoderPID('X');
       leftTurn();
       countStart();
-      while (leftCount < 300 && rightCount < 300) encoderPIDA();
-      //      setEncoderPID('F');
-      //      leftTurn();
-      //      countStart();
-      //      while (leftCount < 100 && rightCount <100) encoderPID();
+      while (leftCount < 150 && rightCount < 150) {
+        encoderPIDA();
+      }
+      setEncoderPID('E');
+      leftTurn();
+      while (1)
+      {
+        if (lineMode == 1 ) {
+          qtrRead();
+        } else {
+          qtrReadMesh();
+        }
+        if ( dval[5] || dval[6] )     //16-qtr - 7
+        {  brake(  );
+          brake( 'R' );
+          break;
+        }
+        encoderPID();
+      }
       break;
     case 90: //clockwise 90 degree
       setEncoderPID('X');
       rightTurn();
       countStart();
-      while (leftCount < 300 && rightCount < 300) encoderPIDA();
-      //      setEncoderPID('F');
-      //      rightTurn();
-      //      countStart();
-      //      while (leftCount < 100 && rightCount < 100) encoderPID();
+      while (leftCount < 150 && rightCount < 150) {
+        encoderPIDA();
+      }
+      setEncoderPID ('E');
+      rightTurn();
+      while (1)
+      {
+        if (lineMode == 1 ) {
+          qtrRead();
+        } else {
+          qtrReadMesh();
+        }
+        if ( dval[9] || dval[10]  )     //16-qtr - 7
+        {
+          brake( 'L' );
+          break;
+        }
+        encoderPID();
+      }
       break;
 
     case 180: //clockwise 90 degree, total count 1420
       setEncoderPID('X');
       rightTurn();
       countStart();
-      while (leftCount < 420 && rightCount < 420) encoderPIDA();
-      setEncoderPID('F');
-      break;
-  }
-
-  setEncoderPID ('E');
-  switch (angle)
-  {
-    case -90:
-      leftTurn();
-      break;
-    case 90:
+      while (leftCount < 220 && rightCount < 220) {
+        encoderPIDA();
+      }
+      setEncoderPID ('E');
       rightTurn();
-      break;
-    case 180:
-      rightTurn();
-      break;
-  }
-  while (1)
-  {
-    if (lineMode == 0 ) {
-      qtrReadMesh();
-    } else {
-      qtrRead();
-    }
-    if (  dval[7] || dval[8]  )      //16-qtr - 7
-    {
-      switch (angle)
+      int temp = brakeTime;
+      brakeTime = 60;
+      while (1)
       {
-        case -90:
-          brake( 'R' );
-          break;
-        case 90:
-          brake( 'L');
-          break;
-        case 180:
+        if (lineMode == 1 ) {
+          qtrRead();
+        } else {
+          qtrReadMesh();
+        }
+        if (  dval[12] && dval[13] )     //16-qtr - 7
+        {
           brake( 'L' );
           break;
+        }
+        encoderPID();
       }
+      brakeTime = temp;
       break;
-    }
-    encoderPID();
   }
-
   //ontoLine(200);
   setLineFollow( manner );
   stoP();

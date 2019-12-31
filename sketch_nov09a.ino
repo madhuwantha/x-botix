@@ -102,101 +102,14 @@ void setup() {
     }
   }
 
-
   ServoIntiate();
-  keyPad ();
+  //keyPad();
 } //end setup
 
 void loop() {
-  //centerAtWhiteLine();
-  //Serial.println(  isMetal() );
 
-  //    baseToCatch();
-  //    delay(100);
-  //    catchSorb();
-  //    up();
-  //    vibrate();
-  //  delay(2000);
-  //ontoBreakPoint(1);
-  //lineMzaSolve();
-  //lineFollow();
-  secondRound() ;
-  //setColorServo();
-  //  skipTurn();
-  //  ramp();
-  //  getSword();
-  //  encoderMove(-100);
-  //  turnAngle(180);
-  //  encoderMove(-100);
-  //  ramp();
-  //turn( 'L' );
-  //  up();
-  //  delay(1000);
-  //  catchSorb();
-  //  delay(1000);
-  //  vibrate();
-  //  skipTurn();
-  //  putSword();
-
-  // secondRound();
-
-
-  //centerAtLine();
-  //lineFollowMove(200);
-  //for white line
-  //lineMode = 0;
-  //
-  //  skipTurn();
-  //
-  //  turn( 'R' );
-
-
-
-  //onToMesh( );
-  //encoderMove(100);
-  //lineMzaSolve() ;// mesh
-  //getSword();
-
-  //  getSword();
-  //  turnAngle(180);
-  //  skipTurn();
-  //  ontoT(1);
-  //  putSword();
-
-
-  //  checkJunctionMaze();
-  //  Serial.println( mode );
-
-  //  onToDashLine();
-  //  checkQTR();
-  //  ontoBreakPoint(1);
-  //  encoderMove(200);
-  //
-  //  setEncoderPID('F');
-  //  leftCount = 0;
-  //  rightCount = 0;
-  //  while (leftCount <= 300 && rightCount <= 300) {
-  //    encoderPID();
-  //  }
-  //  brake('B');
-
-  //turnAngle(180);
-  //  onToDashLine();
-  //  inDashLine();
+lineMzaSolve();
+stoP();
   //secondRound();
-
-  //lineMzaSolve();
-
-
-
-
-
-
-  //  onToDashLine();
-  //  inDashLine();
-  //  centerAtJunction(T);
-  //  turnAngle(-90);
-  // oneColor( tcsO );
-  stoP();
-  delay(1000000000000000000);
+  delay(10000000000);
 }

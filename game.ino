@@ -17,10 +17,10 @@ void firstRound() {
   delay(300);
   oneColor( tcsN ); // detect the color
   colorServoIntiate();
-  encoderMove(-200);
   turnAngle(180);
   light('O');
   centerAtLine();
+  encoderMove(-200);
 
   //*************************BBBBBBBBBBBBBBBBBBBB******************************
   turn('R');
@@ -83,24 +83,24 @@ void firstRound() {
   pushButton(); // push button
   centerAtLine();
   skipTurn();
-  turn( 'R' );  ////////////////////////////////////////////////////////////////////////////////
+  //turn( 'R' );  ////////////////////////////////////////////////////////////////////////////////
   skipTurn();
 
   //*************************GGGGGGGGGGGGGGGGGGGGGG******************************
   //ramp();
-  skipTurn();
-  skipTurn();
+  //skipTurn();
+  //skipTurn();
   turn( 'R' );
 
   //*************************HHHHHHHHHHHHHHHHHHHHHH******************************
   onToMesh( );
-  lineMzaSolve() ;// mesh
+  lineMzaSolve();// mesh
 
   //*************************IIIIIIIIIIIIIIIIIIIIII******************************
   lineMode = 1;
   getSword();
   turnAngle(180);
-  encoderMove( -300 );
+  encoderMove( -300 );/////////////////////////////////////////////////////////////////////////////////
   turn('R');
   turn('R');
   onToMesh();
@@ -113,6 +113,7 @@ void firstRound() {
   turn('L');
 
   //*************************GGGGGGGGGGGGGGGGGGGGGG******************************
+  //ramp();
   skipTurn();
   skipTurn();
   turn('L');
@@ -121,6 +122,9 @@ void firstRound() {
   //*************************JJJJJJJJJJJJJJJJJJJJJJ******************************
   ontoL(1);
   switch (colorCount) {
+    case 0:
+      centerAtJunction(L);
+      break;
     case 1:
       centerAtJunction(L);
       break;
@@ -142,107 +146,108 @@ void firstRound() {
 
 
 void secondRound() {
-  /*  leaveSquare(); // start
+  leaveSquare(); // start
 
-    //************************AAAAAAAAAAAAAAAAAAA*******************************
-    turn('R'); //to A
-    centerAtLine();
-    ontoBreakPoint(1); // A
-    centertoBreakPoint();
-    setColorServo();
-    delay(300);
-    oneColor( tcsN ); // detect the color
-    colorServoIntiate();
-    encoderMove(-200);
-    turnAngle(180);
-    light('O');
-    centerAtLine();
+  //************************AAAAAAAAAAAAAAAAAAA*******************************
+  turn('R'); //to A
+  centerAtLine();
+  ontoBreakPoint(1); // A
+  centertoBreakPoint();
+  setColorServo();
+  delay(300);
+  oneColor( tcsN ); // detect the color
+  colorServoIntiate();
+  encoderMove(-200);
+  turnAngle(180);
+  light('O');
+  centerAtLine();
 
-    //*************************BBBBBBBBBBBBBBBBBBBB******************************
-    turn('R');
-    skipTurn();
-    skipTurn();
-    ontoBreakPoint(1); //  break point B
-    centertoBreakPoint();
-    setColorServo();
-    delay(300);
-    twoColor( tcsN, tcsO );//detect color B  1
-    colorServoIntiate();
-    encoderMove(-200);
-    turnAngle(180);
-    light('O');
-    centerAtLine();
-    encoderMove(-200); ////////////////////////////////////////////////////////////////////////
-    turn('R');
-    turn('R');
-    turn('R');
-    centerAtLine();
-    ontoBreakPoint(1);
-    centertoBreakPoint();
-    setColorServo();
-    delay(300);
-    twoColor( tcsN, tcsO );//detect color B  2
-    colorServoIntiate();
-    encoderMove(-200);
-    turnAngle(180);
-    encoderMove(-200);
-    light('O');
-    centerAtLine();
-    turn('L');
-    turn('L');
-    turn('R'); // finishedd the B
+  //*************************BBBBBBBBBBBBBBBBBBBB******************************
+  turn('R');
+  skipTurn();
+  skipTurn();
+  ontoBreakPoint(1); //  break point B
+  centertoBreakPoint();
+  setColorServo();
+  delay(300);
+  twoColor( tcsN, tcsO );//detect color B  1
+  colorServoIntiate();
+  encoderMove(-200);
+  turnAngle(180);
+  light('O');
+  centerAtLine();
+  encoderMove(-200); ////////////////////////////////////////////////////////////////////////
+  turn('R');
+  turn('R');
+  turn('R');
+  centerAtLine();
+  ontoBreakPoint(1);
+  centertoBreakPoint();
+  setColorServo();
+  delay(300);
+  twoColor( tcsN, tcsO );//detect color B  2
+  colorServoIntiate();
+  encoderMove(-200);
+  turnAngle(180);
+  encoderMove(-200);
+  light('O');
+  centerAtLine();
+  turn('L');
+  turn('L');
+  turn('R'); // finishedd the B
 
-    //*************************CCCCCCCCCCCCCCCCCCCCCC******************************
-    turn('L');
-    ontoT(1);
-    enterSquare();
-    IndicateinC();
-    light( 'O' );
-    encoderbackTurn();
-    leaveSquare();
-    centerAtLine();
-    skipTurn(); // crose line after C
-    turn('R');
-    turn('L'); // before the dash liine
+  //*************************CCCCCCCCCCCCCCCCCCCCCC******************************
+  turn('L');
+  ontoT(1);
+  enterSquare();
+  IndicateinC();
+  delay(3000);
+  light( 'O' );
+  encoderbackTurn();
+  leaveSquare();
+  centerAtLine();
+  skipTurn(); // crose line after C
+  turn('R');
+  turn('L'); // before the dash liine
 
-    //*************************DDDDDDDDDDDDDDDDDDDDDD******************************
-    onToDashLine();
-    inDashLine();
+  //*************************DDDDDDDDDDDDDDDDDDDDDD******************************
+  onToDashLine();
+  inDashLine();
 
-    //*************************EEEEEEEEEEEEEEEEEEEEEE******************************
-    centerAtJunction(T);
-    turnAngle(-90);
-    centerAtLine();
-    ontoBreakPoint(1);
-    centertoBreakPoint();
-    pushButton(); // push button
-    centerAtLine();
-    skipTurn();
+  //*************************EEEEEEEEEEEEEEEEEEEEEE******************************
+  centerAtJunction(T);
+  turnAngle(-90);
+  centerAtLine();
+  ontoBreakPoint(1);
+  centertoBreakPoint();
+  pushButton(); // push button
+  centerAtLine();
+  skipTurn();
 
-    turn( 'R' );  ////////////////////////////////////////////////////////////////////////////////
-*/
-    skipTurn();
+  //turn( 'R' );  ////////////////////////////////////////////////////////////////////////////////
 
-    //*************************GGGGGGGGGGGGGGGGGGGGGG******************************
-    ramp();
-    //skipTurn();
-    //skipTurn();
-    turn( 'R' );
+  skipTurn();
 
-    //*************************HHHHHHHHHHHHHHHHHHHHHH******************************
-    onToMesh( );
-    encoderMove(100);
-    centerAtWhiteLine();
-    lineMzaSolve() ;// mesh
+  //*************************GGGGGGGGGGGGGGGGGGGGGG******************************
+  ramp();
+  //skipTurn();
+  //skipTurn();
+  turn( 'R' );
 
-    //*************************IIIIIIIIIIIIIIIIIIIIII******************************
-    lineMode = 1;
-    getMetalSword();
-    onToMesh();
+  //*************************HHHHHHHHHHHHHHHHHHHHHH******************************
+  onToMesh( );
+  encoderMove(100);
+  centerAtWhiteLine();
+  lineMzaSolve() ;// mesh
 
-    //*************************HHHHHHHHHHHHHHHHHHHHHH******************************
-    goHome();
-  
+  //*************************IIIIIIIIIIIIIIIIIIIIII******************************
+  lineMode = 1;
+  getMetalSword();
+  onToMesh();
+
+  //*************************HHHHHHHHHHHHHHHHHHHHHH******************************
+  goHome();
+
   onToBlack();// shotest path
   lineMode = 1;
   centerAtLine();
@@ -253,11 +258,14 @@ void secondRound() {
   //skipTurn();
   //skipTurn();
   turn('L');
-  colorCount = 2;
+  //colorCount = 2;
 
   //*************************JJJJJJJJJJJJJJJJJJJJJJ******************************
   ontoL(1);
   switch (colorCount) {
+    case 0:
+      centerAtJunction(L);
+      break;
     case 1:
       centerAtJunction(L);
       break;

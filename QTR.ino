@@ -25,10 +25,10 @@ void qtrRead()
 {
   //  uint16_t position = qtr.readLineWhite(sensorValues);
   uint16_t position = qtr.readLineBlack(sensorValues);
-
+ 
   for (int i = 0; i < SensorCount ; i++ )
   {
-    if (sensorValues[i] < 600) dval[i] = 0;
+    if (sensorValues[i] < 850) dval[i] = 0;
     else dval[i] = 1;
   }
 }

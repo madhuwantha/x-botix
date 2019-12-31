@@ -10,7 +10,7 @@ void setLineFollow(char manner)
     case 'E'://Extremly Slow
       Kp = 0.1;
       Kd = 1;
-      Ki = 0.001;
+      Ki = 0.001; encoderMove(-200);
       minSpeed = 0;
       baseSpeed = 50;
       maxSpeed = 50;
@@ -51,12 +51,15 @@ void setLineFollow(char manner)
       break;
 
     case 'F'://Fast
-      //      Kp = 0.1555;
-      //      Kd = 2.80555599;
-      //      Ki = 0.0115555;
-      Kp = 5;
-      Kd = 20;
-      Ki = 0;
+      //      Kp = 1.1555;
+      //      Kd = 3.80555599;
+      //      Ki = 0.000115555;
+      //      Kp = 1;
+      //      Kd = 30;
+      //      Ki = 0.0001;
+      Kp = 0.05;
+      Kd = 1.5;
+      Ki = 0.0001;
       minSpeed = 0;
       baseSpeed = 200;
       maxSpeed = 230;
@@ -66,9 +69,9 @@ void setLineFollow(char manner)
       //      Kp = 0.1555;
       //      Kd = 1.80555599;
       //      Ki = 0.0000000000115555;
-      Kp = 5;
-      Kd = 20;
-      Ki = 0;
+      Kp = 1;
+      Kd = 30;
+      Ki = 0.0001;
       minSpeed = 0;
       baseSpeed = 230;
       maxSpeed = 245;
@@ -93,7 +96,7 @@ void setLineFollow(char manner)
       break;
     case 'N'://backword
       Kp = 0.089;
-      Kd = 1.2;
+      Kd = 2.2;
       Ki = 0.00000000009;
       minSpeed = 0;
       baseSpeed = 160;
